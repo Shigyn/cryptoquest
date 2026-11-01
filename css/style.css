@@ -815,6 +815,67 @@ body.legion-on .town-svg .legion-flag { fill: #e8c87e; }
   .town-head h2 { font-size: 20px; }
 }
 
+/* ---------- UI-3 : barre du haut, objectifs, cérémonie, gains ---------- */
+.wallet { gap: 10px; }
+.hud-portrait { position: relative; width: 46px; height: 46px; flex: none; display: grid; place-items: center; color: var(--text); }
+.hud-portrait svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.hud-portrait .ring-bg { fill: #141015; stroke: #2b2529; stroke-width: 3.5; }
+.hud-portrait .ring { fill: none; stroke: var(--gold-2); stroke-width: 3.5; stroke-linecap: round; transition: stroke-dashoffset .4s; filter: drop-shadow(0 0 3px rgba(232,200,126,.6)); }
+.hud-portrait .hp-face { font-size: 22px; position: relative; }
+.hud-portrait .hp-lvl { position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); min-width: 22px; padding: 0 5px; border-radius: 99px; background: #2a0f12; border: 1px solid var(--gold); color: var(--gold-2); font-family: var(--font-title); font-size: 11px; font-weight: 700; text-align: center; line-height: 16px; }
+.hud-portrait.pts::after { content: ""; position: absolute; top: 1px; right: 1px; width: 10px; height: 10px; border-radius: 50%; background: var(--red-2); border: 2px solid #0b0a0c; }
+.flask { display: flex; align-items: center; gap: 6px; padding: 5px 11px 5px 8px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); color: var(--text); font: inherit; cursor: pointer; }
+.flask svg { width: 18px; height: 24px; }
+.flask .fl-glass { fill: #141520; stroke: #6d7fb3; stroke-width: 1.4; }
+.flask .fl-liquid { fill: var(--en); filter: drop-shadow(0 0 3px rgba(143,180,255,.7)); }
+.flask.over .fl-liquid { fill: #c9b3ff; }
+.flask.empty { border-color: #5a2a30; animation: enPulse 1.6s ease-in-out infinite; }
+.flask b { font-variant-numeric: tabular-nums; }
+.flask .en-max { color: var(--dim); font-size: 11px; }
+.purse { display: flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.purse.bump, .flask.bump { animation: bump .35s ease; }
+@keyframes bump { 40% { transform: scale(1.18); border-color: var(--gold); } }
+.book-btn { width: 38px; height: 38px; border-radius: 10px; background: var(--panel-2); border: 1px solid var(--line); font-size: 17px; cursor: pointer; }
+.book-menu { position: fixed; z-index: 90; top: 62px; right: 18px; min-width: 200px; padding: 6px; border-radius: 12px; background: var(--panel); border: 1px solid #4b3d22; box-shadow: 0 16px 40px rgba(0,0,0,.6); animation: pop .15s ease; }
+.book-menu a { display: flex; gap: 10px; align-items: center; padding: 9px 10px; border-radius: 8px; color: var(--text); }
+.book-menu a:hover { background: var(--panel-2); }
+
+.objectives { position: fixed; z-index: 45; left: calc(var(--side) + 16px); bottom: 16px; width: 280px; border-radius: 12px; background: rgba(22,19,23,.96); border: 1px solid #5c4a26; box-shadow: 0 14px 40px rgba(0,0,0,.55); overflow: hidden; }
+.obj-head { display: flex; justify-content: space-between; width: 100%; padding: 9px 12px; background: linear-gradient(90deg, rgba(201,162,74,.14), transparent); border: 0; color: var(--gold-2); font-family: var(--font-title); font-size: 13.5px; cursor: pointer; }
+.obj-list { padding: 4px 6px 8px; }
+.obj { display: flex; gap: 9px; align-items: center; padding: 6px; border-radius: 8px; color: var(--text); }
+.obj:hover { background: var(--panel-2); }
+.obj .oi { font-size: 18px; width: 24px; text-align: center; }
+.obj b { display: block; font-size: 12.5px; }
+.obj small { display: block; font-size: 11px; color: var(--muted); }
+
+.levelup { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; background: radial-gradient(circle at 50% 45%, rgba(163,32,42,.35), rgba(5,4,6,.88) 60%); animation: fadeIn .25s ease; cursor: pointer; }
+.levelup.out { animation: fadeOut .35s ease forwards; }
+.lu-rays { position: absolute; width: 640px; height: 640px; max-width: 120vw; background: repeating-conic-gradient(from 0deg, rgba(232,200,126,.12) 0 8deg, transparent 8deg 22deg); border-radius: 50%; animation: spin 14s linear infinite; mask-image: radial-gradient(circle, #000 25%, transparent 68%); -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 68%); }
+.lu-box { position: relative; text-align: center; animation: luPop .55s cubic-bezier(.2,1.4,.4,1) both; }
+.lu-num { font-family: var(--font-title); font-size: 120px; line-height: 1; color: var(--gold-2); text-shadow: 0 0 30px rgba(232,200,126,.6), 0 6px 0 #5c1c22; }
+.lu-gains { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 14px 0 10px; }
+.lu-gains span { padding: 5px 11px; border-radius: 99px; background: rgba(201,162,74,.12); border: 1px solid #5c4a26; color: var(--gold-2); font-weight: 600; font-size: 13px; }
+@keyframes luPop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; } }
+@keyframes fadeOut { to { opacity: 0; } }
+
+.fly { position: fixed; z-index: 130; pointer-events: none; font-size: 16px; }
+.fly .ic { transform: scale(1.3); }
+
+@media (max-width: 720px) {
+  .wallet { gap: 6px; }
+  .purse.opt { display: none; }
+  .purse, .flask { padding: 4px 8px; font-size: 12.5px; }
+  .flask .en-max { display: none; }
+  .hud-portrait { width: 40px; height: 40px; }
+  .book-btn { width: 34px; height: 34px; }
+  .page-title { display: none; }
+  .objectives { left: 12px; right: 12px; width: auto; bottom: calc(74px + env(safe-area-inset-bottom)); }
+  .lu-num { font-size: 92px; }
+}
+
 @media (max-width: 1180px) {
   .zones { grid-template-columns: repeat(3, minmax(0,1fr)); }
   .stat-tiles { grid-template-columns: repeat(3, minmax(0,1fr)); }
