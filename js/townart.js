@@ -33,14 +33,49 @@ CQ.townScene = () => {
 };
 
 // le plateau s'ouvre sur la Maison du héros
+// ---------- Hub plein écran ----------
+// Le plateau prend tout l'écran ; titre, bonus du héraut et dock de raccourcis flottent par-dessus.
+CQ.DOCK = [['hero', '🧝', 'Héros', 'desk'], ['inventory', '🎒', 'Sac', 'desk'], ['quests', '📜', 'Quêtes'], ['chests', '📦', 'Coffres'], ['mail', '📬', 'Courrier'], ['season', '🎖️', 'Saison'], ['leaderboard', '🏆', 'Gloire']];
+CQ.townDock = () => {
+  const b = CQ.badges();
+  return `<nav class="town-dock" aria-label="Raccourcis">${CQ.DOCK.filter(([id]) => CQ.unlocked(id)).map(([id, ic, l, only]) =>
+    `<a class="dk ${only === 'desk' ? 'dk-desk' : ''}" href="#${id}"><span class="dk-ico">${ic}${b[id] ? '<i class="dk-dot"></i>' : ''}</span><span class="dk-l">${l}</span></a>`).join('')}</nav>`;
+};
 (() => {
+  const render = P.town.render;
+  P.town.render = () => {
+    const t = document.createElement('template');
+    t.innerHTML = render();
+    const wr = t.content.querySelector('#townWrap');
+    if (wr && wr.querySelector('.pano-svg')) {
+      const stage = document.createElement('div');
+      stage.className = 'town-stage';
+      wr.replaceWith(stage);
+      stage.append(wr);
+      const head = t.content.querySelector('.town-head'), crier = t.content.querySelector('.town-crier');
+      if (head) stage.append(head);
+      // le bonus du héraut devient un médaillon cadeau (la bannière cachait les rubans)
+      if (crier) { crier.remove(); stage.insertAdjacentHTML('beforeend', `<button class="hub-gift" data-act="claimLogin" title="Bonus de connexion du jour"><span class="dk-ico">🎁<i class="dk-dot"></i></span><span class="dk-l">Bonus du jour</span></button>`); }
+      stage.insertAdjacentHTML('beforeend', CQ.townDock());
+    }
+    return t.innerHTML;
+  };
   const mount = P.town.mount;
   P.town.mount = () => {
     const wr = CQ.$('#townWrap'), m = wr && wr.querySelector('.pbld[data-arg="hero"]');
     if (!m) return mount();
     wr.classList.add('pano');
-    wr.scrollLeft = m.getBoundingClientRect().left - wr.getBoundingClientRect().left - wr.clientWidth / 3;
+    // le hub occupe exactement la hauteur sous la barre du haut
+    document.documentElement.style.setProperty('--hub-top', Math.round(CQ.$('#xpbar').getBoundingClientRect().bottom + scrollY) + 'px');
+    // on garde la position quand la ville se redessine ; à la première ouverture, on montre la Maison du héros
+    wr.scrollLeft = P.town._x != null ? P.town._x : m.getBoundingClientRect().left - wr.getBoundingClientRect().left - wr.clientWidth / 3;
+    wr.addEventListener('scroll', () => { P.town._x = wr.scrollLeft; }, { passive: true });
+    // molette verticale = défilement horizontal du plateau
+    wr.addEventListener('wheel', (e) => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { wr.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false });
   };
+  // marque la page pour la mise en page plein écran
+  const r = CQ.render;
+  CQ.render = CQ.refresh = () => { r(); document.body.classList.toggle('page-town', CQ.ui.page === 'town' && !!document.querySelector('.town-stage')); };
 })();
 document.addEventListener('keydown', (e) => {
   const el = e.target.closest && e.target.closest('.pbld.open');

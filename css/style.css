@@ -968,6 +968,41 @@ body.reduce .wm-fog, body.reduce .wm-flag { animation: none; }
 .pbang { animation: bangBob 1.4s ease-in-out infinite; }
 @media (max-width: 720px) { .pano-svg { height: 58vh; } }
 
+/* ---------- Hub plein écran ---------- */
+body.page-town .view { padding: 0 0 40px; max-width: none; }
+.town-stage { position: relative; height: calc(100dvh - var(--hub-top, 64px)); min-height: 380px; overflow: hidden; background: #0b0710; }
+.town-stage .town-wrap { height: 100%; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+.town-stage .pano-svg { height: 100%; }
+.town-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(8,5,12,.55), transparent 18%, transparent 78%, rgba(8,5,12,.7)); }
+.town-stage .town-head { position: absolute; z-index: 3; top: 14px; left: 18px; margin: 0; pointer-events: none; text-shadow: 0 2px 8px #000; }
+.town-stage .town-head > .small { display: none; }
+.town-stage .town-head h2 { color: var(--gold-2); }
+.town-stage .town-crier { position: absolute; z-index: 3; top: 14px; right: 18px; max-width: 440px; margin: 0; background: rgba(18,12,20,.88); backdrop-filter: blur(6px); box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+body.page-town .view > .grid { padding: 18px 28px 0; }
+.hub-gift { position: absolute; z-index: 3; left: 18px; bottom: 18px; display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: 0; cursor: pointer; animation: bangBob 1.6s ease-in-out infinite; }
+.hub-gift .dk-ico { width: 64px; height: 64px; font-size: 32px; border-color: #ffd36b; box-shadow: 0 4px 0 #5e3f14, 0 0 22px rgba(255,200,90,.65), inset 0 2px 6px rgba(255,255,255,.2); }
+
+.town-dock { position: absolute; z-index: 3; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; gap: 14px; padding: 8px 16px 6px; border-radius: 22px; background: linear-gradient(180deg, rgba(40,22,30,.82), rgba(14,9,14,.92)); border: 2px solid #6b5326; box-shadow: 0 12px 34px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,220,150,.15); }
+.dk { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text); min-width: 58px; }
+.dk-ico { position: relative; width: 54px; height: 54px; display: grid; place-items: center; font-size: 26px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #5a2a6e, #2a1233 60%, #160a1c); border: 3px solid #d8b25e; box-shadow: 0 4px 0 #5e3f14, 0 6px 14px rgba(0,0,0,.6), inset 0 2px 6px rgba(255,255,255,.18); transition: transform .15s; }
+.dk:hover .dk-ico { transform: translateY(-3px) scale(1.06); }
+.dk-dot { position: absolute; top: -2px; right: -2px; width: 16px; height: 16px; border-radius: 50%; background: #e0303c; border: 2px solid #ffe7a8; box-shadow: 0 0 8px rgba(224,48,60,.8); }
+.dk-l { font-family: var(--font-title); font-size: 12px; color: #ffe7a8; text-shadow: 0 1px 3px #000, 0 0 2px #000; }
+
+@media (max-width: 720px) {
+  .town-stage { height: calc(100dvh - var(--hub-top, 58px) - 66px - env(safe-area-inset-bottom)); }
+  .town-stage .town-head { top: 10px; left: 12px; }
+  .town-stage .town-head h2 { font-size: 18px; }
+  .hub-gift { left: 10px; bottom: 84px; }
+  .hub-gift .dk-ico { width: 52px; height: 52px; font-size: 26px; }
+  .dk-desk { display: none; }
+  .town-dock { gap: 6px; padding: 6px 8px 4px; bottom: 10px; }
+  .dk { min-width: 52px; }
+  .dk-ico { width: 44px; height: 44px; font-size: 21px; }
+  .dk-l { font-size: 10.5px; }
+  body.page-town .view > .grid { padding: 14px 16px 0; }
+}
+
 @media (max-width: 1180px) {
   .zones { grid-template-columns: repeat(3, minmax(0,1fr)); }
   .stat-tiles { grid-template-columns: repeat(3, minmax(0,1fr)); }
