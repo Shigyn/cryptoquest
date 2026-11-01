@@ -909,6 +909,8 @@ body.legion-on .town-svg .legion-flag { fill: #e8c87e; }
   .int-face { width: 38px; height: 38px; font-size: 21px; }
   .int-line, .int-intro { font-size: 12.5px; }
   .int-back { display: none; }
+  .int-tabs { gap: 2px; }
+  .int-tabs .tab { flex: 1; padding: 7px 4px; font-size: 12px; text-align: center; }
 }
 
 /* ---------- UI-4 : carte du monde ---------- */

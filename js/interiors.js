@@ -105,9 +105,10 @@ CQ.interiorHtml = (page) => {
         ${first ? `<ol class="int-intro">${n.intro.map((l) => `<li>${l}</li>`).join('')}</ol><button class="btn sm gold" data-act="npcSeen" data-arg="${b.id}">Compris</button>`
           : `<p class="int-line">« ${CQ.npcLine(b.id)} »</p>`}</div></div>${back}</div>${CQ.bldTabs(b, page)}`;
 };
-// pièces d'un même bâtiment : la Maison du héros regroupe héros, équipement et sac
-CQ.BLD_TABS = { maison: [['hero', '🧝 Héros'], ['equipment', '🛡️ Équipement'], ['inventory', '🎒 Inventaire']] };
-CQ.bldTabs = (b, page) => (CQ.BLD_TABS[b.id] ? `<div class="tabs int-tabs">${CQ.BLD_TABS[b.id].map(([id, l]) => `<a class="tab ${id === page ? 'on' : ''}" href="#${id}">${l}</a>`).join('')}</div>` : '');
+// onglets de l'équipement du héros : visibles sur chacune de ces pages (la forge est à côté de l'inventaire)
+CQ.GEAR_TABS = [['hero', '🧝 Héros'], ['equipment', '🛡️ Équipement'], ['inventory', '🎒 Inventaire'], ['forge', '🔨 Forge']];
+CQ.bldTabs = (b, page) => (CQ.GEAR_TABS.some(([id]) => id === page)
+  ? `<div class="tabs int-tabs">${CQ.GEAR_TABS.filter(([id]) => CQ.unlocked(id)).map(([id, l]) => `<a class="tab ${id === page ? 'on' : ''}" href="#${id}">${l}</a>`).join('')}</div>` : '');
 CQ.A.npcSeen = (id) => { CQ.npcSeen()[id] = 1; CQ.save(); CQ.renderInterior(); };
 
 // le bandeau vit au-dessus de la page : on le met à jour sans redessiner la page

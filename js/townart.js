@@ -35,7 +35,7 @@ CQ.townScene = () => {
 // le plateau s'ouvre sur la Maison du héros
 // ---------- Hub plein écran ----------
 // Le plateau prend tout l'écran ; titre, bonus du héraut et dock de raccourcis flottent par-dessus.
-CQ.DOCK = [['hero', '🧝', 'Héros', 'desk'], ['inventory', '🎒', 'Inventaire', 'desk'], ['quests', '📜', 'Quêtes'], ['chests', '📦', 'Coffres'], ['mail', '📬', 'Courrier'], ['season', '🎖️', 'Saison'], ['leaderboard', '🏆', 'Gloire']];
+CQ.DOCK = [['hero', '🧝', 'Héros', 'desk'], ['inventory', '🎒', 'Inventaire', 'desk'], ['forge', '🔨', 'Forge'], ['quests', '📜', 'Quêtes'], ['chests', '📦', 'Coffres'], ['mail', '📬', 'Courrier'], ['season', '🎖️', 'Saison'], ['leaderboard', '🏆', 'Gloire']];
 CQ.townDock = () => {
   const b = CQ.badges();
   return `<nav class="town-dock" aria-label="Raccourcis">${CQ.DOCK.filter(([id]) => CQ.unlocked(id)).map(([id, ic, l, only]) =>
