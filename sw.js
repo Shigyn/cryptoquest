@@ -2,11 +2,11 @@
 // Service worker : le jeu s'ouvre même sans réseau.
 // Réseau d'abord (une mise à jour s'affiche tout de suite), cache en secours quand on est hors ligne.
 // Changer VERSION à chaque livraison pour forcer le renouvellement complet.
-const VERSION = 'cq-ui-2';
+const VERSION = 'cq-ui-4';
 const SHELL = [
   './', './index.html', './manifest.webmanifest', './css/style.css',
   './js/data.js', './js/state.js', './js/engine.js', './js/economy.js', './js/ui.js', './js/pages.js', './js/hero.js', './js/forge.js', './js/content.js',
-  './js/auction.js', './js/market.js', './js/arena.js', './js/comfort.js', './js/premium.js', './js/guild.js', './js/abyss.js', './js/team.js', './js/season.js', './js/cloud-config.js', './js/cloud.js', './js/progress.js', './js/town.js', './js/hud.js', './js/interiors.js', './js/main.js',
+  './js/auction.js', './js/market.js', './js/arena.js', './js/comfort.js', './js/premium.js', './js/guild.js', './js/abyss.js', './js/team.js', './js/season.js', './js/cloud-config.js', './js/cloud.js', './js/progress.js', './js/town.js', './js/hud.js', './js/interiors.js', './js/worldmap.js', './js/main.js',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/favicon.png',
 ];
 

@@ -909,6 +909,44 @@ body.legion-on .town-svg .legion-flag { fill: #e8c87e; }
   .int-back { display: none; }
 }
 
+/* ---------- UI-4 : carte du monde ---------- */
+.worldmap { margin-bottom: 18px; border-radius: 14px; border: 1px solid var(--line-2); background: radial-gradient(ellipse at 50% 120%, #1c1418, #0b090c 70%); box-shadow: inset 0 0 40px rgba(0,0,0,.6); overflow: hidden; }
+.wm-svg { display: block; width: 100%; height: auto; }
+.wm-road { fill: none; stroke: #3a3134; stroke-width: 4; stroke-dasharray: 2 7; stroke-linecap: round; }
+.wm-road.open { stroke: #8a6a2a; stroke-dasharray: 10 6; }
+.wm-fog { fill: #8d8590; opacity: .32; animation: wmFog 9s ease-in-out infinite alternate; }
+@keyframes wmFog { to { transform: translateX(14px); opacity: .22; } }
+.wm-node, .wm-town { cursor: pointer; outline: none; }
+.wm-ring { fill: #161116; stroke: #5c4a26; stroke-width: 2.5; }
+.wm-node.r-green .wm-ring { stroke: #4f9a62; }
+.wm-node.r-gold .wm-ring { stroke: #c9a24a; }
+.wm-node.r-red .wm-ring { stroke: #c9303a; }
+.wm-node.on .wm-ring { stroke: var(--gold-2); stroke-width: 3.5; filter: drop-shadow(0 0 8px rgba(232,200,126,.7)); }
+.wm-node:not(.locked):hover .wm-ring, .wm-node:focus-visible .wm-ring, .wm-town:focus-visible path { filter: drop-shadow(0 0 8px rgba(232,200,126,.6)); }
+.wm-node.locked { cursor: help; }
+.wm-node.locked .wm-ring { fill: #0e0c10; stroke: #2e2830; stroke-dasharray: 4 4; }
+.wm-ico { font-size: 22px; }
+.wm-node.locked .wm-ico { font-size: 15px; opacity: .55; }
+.wm-name { fill: #e8c87e; font-family: var(--font-title); font-size: 14px; paint-order: stroke; stroke: #0b090c; stroke-width: 3px; }
+.wm-node.locked .wm-name { fill: #6d6268; }
+.wm-lvl { fill: var(--muted); font-size: 11.5px; font-family: var(--font); paint-order: stroke; stroke: #0b090c; stroke-width: 3px; }
+.wm-node.r-green .wm-lvl { fill: #6fbf82; } .wm-node.r-red .wm-lvl { fill: #e0606a; } .wm-node.r-gold .wm-lvl { fill: #d8b25e; }
+.wm-boss circle, .wm-key circle { fill: #120e12; stroke: #3d3439; }
+.wm-boss text, .wm-key text { font-size: 11px; }
+.wm-boss { opacity: .4; }
+.wm-boss.ready { opacity: 1; }
+.wm-boss.ready circle { stroke: var(--gold-2); filter: drop-shadow(0 0 5px rgba(232,200,126,.8)); }
+.wm-banner path { stroke: #c9a24a; stroke-width: 2; fill: none; }
+.wm-banner .wm-flag { fill: #a3202a; stroke: none; transform-box: fill-box; transform-origin: left center; animation: flame 1.4s ease-in-out infinite alternate; }
+.wm-town path { fill: #3a3134; stroke: #c9a24a; stroke-width: 1.5; }
+.wm-town text { fill: var(--gold-2); font-family: var(--font-title); font-size: 13px; paint-order: stroke; stroke: #0b090c; stroke-width: 3px; }
+body.reduce .wm-fog, body.reduce .wm-flag { animation: none; }
+
+@media (max-width: 720px) {
+  .worldmap { overflow-x: auto; margin: 0 -16px 14px; border-radius: 0; border-left: 0; border-right: 0; scrollbar-width: none; }
+  .wm-svg { min-width: 860px; }
+}
+
 @media (max-width: 1180px) {
   .zones { grid-template-columns: repeat(3, minmax(0,1fr)); }
   .stat-tiles { grid-template-columns: repeat(3, minmax(0,1fr)); }
