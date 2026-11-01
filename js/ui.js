@@ -121,7 +121,11 @@ CQ.toast = (html, kind = '') => {
 };
 
 // ---------- Vidéo récompensée / visionnage simulé ----------
+// Pas encore de régie publicitaire : la récompense est donnée tout de suite, sans attente.
+// Passer à true quand de vraies vidéos seront branchées.
+CQ.ADS_LIVE = false;
 CQ.watch = ({ title, secs, label }, onDone) => {
+  if (!CQ.ADS_LIVE) { onDone(); return; }
   let left = secs, done = false;
   CQ.openModal(`<h2>${title}</h2>
     <div class="video-sim"><div class="vt">${label}<div class="small dim mt">Publicité simulée — prototype</div></div><div class="bar gold"><i id="vidbar"></i></div></div>

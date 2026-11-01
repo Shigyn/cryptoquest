@@ -124,3 +124,15 @@ CQ.renderInterior = () => {
 (() => { const r = CQ.render; CQ.render = CQ.refresh = () => { r(); CQ.renderInterior(); }; })();
 setInterval(() => { if (CQ.state) CQ.renderInterior(); }, 2000);
 
+
+// en mode ville, le menu ne garde que ce qui n'a pas de bâtiment (la ville sert de menu)
+CQ.navInTown = (id) => CQ.TOWN.some((b) => b.page === id) || !!CQ.PAGE_BLD[id];
+(() => {
+  const rn = CQ.renderNav;
+  CQ.renderNav = () => {
+    if (CQ.navMode() !== 'ville') return rn();
+    const all = CQ.NAV;
+    CQ.NAV = all.map(([g, items]) => [g, items.filter(([id]) => !CQ.navInTown(id))]).filter(([, items]) => items.length);
+    try { rn(); } finally { CQ.NAV = all; }
+  };
+})();
