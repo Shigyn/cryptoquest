@@ -947,6 +947,27 @@ body.reduce .wm-fog, body.reduce .wm-flag { animation: none; }
   .wm-svg { min-width: 860px; }
 }
 
+/* ---------- La Cité peinte : plateau horizontal ---------- */
+.town-wrap.pano { overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; scrollbar-color: #5c4a26 transparent; cursor: grab; }
+.pano-svg { display: block; height: min(64vh, 560px); width: auto; max-width: none; }
+.pbld { cursor: pointer; outline: none; }
+.pbld .pshadow { fill: rgba(0,0,0,.35); }
+.pbld.open:hover image, .pbld.open:focus-visible image, .pbld.open:hover .town-svg { filter: brightness(1.15) drop-shadow(0 0 14px rgba(255,200,110,.55)); }
+.pbld.open image { transition: transform .2s; transform-box: fill-box; transform-origin: 50% 100%; }
+.pbld.open:hover image { transform: scale(1.03); }
+.pbld.locked { cursor: help; }
+.pbld.locked .chantier { opacity: .85; }
+.ribbon .rb-body { fill: #8f1d26; stroke: #e8c87e; stroke-width: 2.5; }
+.ribbon .rb-tail { fill: #5e1218; stroke: #c9a24a; stroke-width: 2; }
+.ribbon text { fill: #ffe7a8; font-family: var(--font-title); font-weight: 700; font-size: 19px; letter-spacing: .02em; paint-order: stroke; stroke: #3a0a0e; stroke-width: 3px; }
+.pbld.locked .ribbon .rb-body { fill: #2a2228; stroke: #6b5a3a; }
+.pbld.locked .ribbon .rb-tail { fill: #1c171b; stroke: #4b3d22; }
+.pbld.locked .ribbon text { fill: #b9ab98; stroke: #120e12; }
+.pbang circle { fill: #d42a35; stroke: #ffe7a8; stroke-width: 3; }
+.pbang text { fill: #fff; font-weight: 800; font-size: 22px; font-family: var(--font); }
+.pbang { animation: bangBob 1.4s ease-in-out infinite; }
+@media (max-width: 720px) { .pano-svg { height: 58vh; } }
+
 @media (max-width: 1180px) {
   .zones { grid-template-columns: repeat(3, minmax(0,1fr)); }
   .stat-tiles { grid-template-columns: repeat(3, minmax(0,1fr)); }
