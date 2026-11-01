@@ -103,8 +103,11 @@ CQ.interiorHtml = (page) => {
     <div class="int-npc"><span class="int-face" aria-hidden="true">${n.face}</span>
       <div class="int-talk"><div class="int-who"><b>${n.name}</b><span>${n.role} · ${b.name}</span></div>
         ${first ? `<ol class="int-intro">${n.intro.map((l) => `<li>${l}</li>`).join('')}</ol><button class="btn sm gold" data-act="npcSeen" data-arg="${b.id}">Compris</button>`
-          : `<p class="int-line">« ${CQ.npcLine(b.id)} »</p>`}</div></div>${back}</div>`;
+          : `<p class="int-line">« ${CQ.npcLine(b.id)} »</p>`}</div></div>${back}</div>${CQ.bldTabs(b, page)}`;
 };
+// pièces d'un même bâtiment : la Maison du héros regroupe héros, équipement et sac
+CQ.BLD_TABS = { maison: [['hero', '🧝 Héros'], ['equipment', '🛡️ Équipement'], ['inventory', '🎒 Inventaire']] };
+CQ.bldTabs = (b, page) => (CQ.BLD_TABS[b.id] ? `<div class="tabs int-tabs">${CQ.BLD_TABS[b.id].map(([id, l]) => `<a class="tab ${id === page ? 'on' : ''}" href="#${id}">${l}</a>`).join('')}</div>` : '');
 CQ.A.npcSeen = (id) => { CQ.npcSeen()[id] = 1; CQ.save(); CQ.renderInterior(); };
 
 // le bandeau vit au-dessus de la page : on le met à jour sans redessiner la page

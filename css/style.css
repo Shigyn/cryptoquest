@@ -900,6 +900,8 @@ body.legion-on .town-svg .legion-flag { fill: #e8c87e; }
 .int-intro { margin: 6px 0 8px; padding-left: 18px; font-size: 13.5px; line-height: 1.5; }
 .interior.first { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(232,200,126,.25), 0 10px 30px rgba(0,0,0,.35); animation: pop .25s ease; }
 .int-back { flex: none; align-self: center; }
+.int-tabs { margin: -6px 0 16px; }
+.int-tabs a.tab { text-decoration: none; }
 
 @media (max-width: 720px) {
   .interior { gap: 10px; padding: 8px 10px; margin-bottom: 12px; }

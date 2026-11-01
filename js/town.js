@@ -179,7 +179,7 @@ document.addEventListener('keydown', (e) => {
 CQ.navMode = () => (CQ.state.settings.nav || 'ville');
 CQ.home = () => (CQ.navMode() === 'ville' ? 'town' : 'dashboard');
 CQ.BOTTOM_MENU = CQ.BOTTOM;
-CQ.BOTTOM_TOWN = [['town', '🏰', 'Ville'], ['combat', '⚔️', 'Combat'], ['hero', '🧝', 'Héros'], ['inventory', '🎒', 'Sac']];
+CQ.BOTTOM_TOWN = [['town', '🏰', 'Ville'], ['combat', '⚔️', 'Combat'], ['hero', '🧝', 'Héros'], ['inventory', '🎒', 'Inventaire']];
 CQ.applyNav = () => {
   const v = CQ.navMode() === 'ville';
   document.body.classList.toggle('nav-town', v);

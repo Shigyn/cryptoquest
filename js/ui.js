@@ -19,7 +19,7 @@ CQ.NAV = [
   ]],
   ['Compte', [['profile', '👤', 'Profil'], ['history', '🧾', 'Historique'], ['premium', '🦅', 'Légion'], ['settings', '⚙️', 'Réglages']]],
 ];
-CQ.BOTTOM = [['dashboard', '🏠', 'Accueil'], ['combat', '⚔️', 'Combat'], ['inventory', '🎒', 'Sac'], ['pool', '🔥', 'Pool']];
+CQ.BOTTOM = [['dashboard', '🏠', 'Accueil'], ['combat', '⚔️', 'Combat'], ['inventory', '🎒', 'Inventaire'], ['pool', '🔥', 'Pool']];
 
 // pastilles « quelque chose à récupérer »
 CQ.badges = () => {
