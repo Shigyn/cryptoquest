@@ -876,6 +876,39 @@ body.legion-on .town-svg .legion-flag { fill: #e8c87e; }
   .lu-num { font-size: 92px; }
 }
 
+@media (max-width: 420px) {
+  .wallet { gap: 4px; min-width: 0; }
+  body.nav-town:not(.on-town) .town-btn { display: none; }
+  .flask svg { width: 14px; height: 20px; }
+  .purse, .flask { padding: 4px 6px; gap: 4px; font-size: 12px; }
+  .hud-portrait { width: 36px; height: 36px; }
+  .hud-portrait .hp-face { font-size: 18px; }
+  .book-btn { width: 32px; height: 32px; font-size: 15px; }
+}
+
+/* ---------- UI-2 : intérieurs des bâtiments ---------- */
+.interior { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding: 10px 14px 10px 10px; border-radius: 14px; border: 1px solid #4b3d22; background: linear-gradient(90deg, rgba(201,162,74,.10), rgba(22,19,23,.6) 40%), var(--panel); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.int-art { width: 92px; height: 76px; flex: none; padding: 4px; border-radius: 10px; background: radial-gradient(ellipse at 50% 80%, rgba(242,198,109,.22), rgba(163,32,42,.08) 55%, transparent 75%); filter: brightness(1.6) saturate(1.1) drop-shadow(0 4px 8px rgba(0,0,0,.6)); }
+.int-art .plate, .int-art .bang { display: none; }
+.int-npc { display: flex; align-items: flex-start; gap: 12px; flex: 1; min-width: 0; }
+.int-face { width: 46px; height: 46px; flex: none; display: grid; place-items: center; font-size: 26px; border-radius: 50%; background: #141015; border: 2px solid var(--gold); box-shadow: 0 0 12px rgba(232,200,126,.25); }
+.int-talk { flex: 1; min-width: 0; }
+.int-who { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.int-who b { font-family: var(--font-title); color: var(--gold-2); font-size: 15px; }
+.int-who span { color: var(--muted); font-size: 12px; }
+.int-line { margin: 3px 0 0; font-style: italic; color: var(--text); font-size: 13.5px; }
+.int-intro { margin: 6px 0 8px; padding-left: 18px; font-size: 13.5px; line-height: 1.5; }
+.interior.first { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(232,200,126,.25), 0 10px 30px rgba(0,0,0,.35); animation: pop .25s ease; }
+.int-back { flex: none; align-self: center; }
+
+@media (max-width: 720px) {
+  .interior { gap: 10px; padding: 8px 10px; margin-bottom: 12px; }
+  .int-art { display: none; }
+  .int-face { width: 38px; height: 38px; font-size: 21px; }
+  .int-line, .int-intro { font-size: 12.5px; }
+  .int-back { display: none; }
+}
+
 @media (max-width: 1180px) {
   .zones { grid-template-columns: repeat(3, minmax(0,1fr)); }
   .stat-tiles { grid-template-columns: repeat(3, minmax(0,1fr)); }
