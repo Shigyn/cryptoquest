@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CryptoQuest</title>
+<meta name="description" content="CryptoQuest — RPG dark fantasy de farm avec économie simulée (prototype V2).">
+<meta name="theme-color" content="#0b0a0c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CryptoQuest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#dashboard">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name">Crypto<b>Quest</b></span>
+    </a>
+    <nav class="nav" id="nav"></nav>
+    <div class="ad-slot" id="adSlot"></div>
+    <div class="version">V2 · lots A, E et B · économie simulée</div>
+  </aside>
+  <div class="scrim" id="scrim" data-act="closeMenu"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" data-act="openMenu" aria-label="Menu">☰</button>
+      <h1 class="page-title" id="pageTitle">Accueil</h1>
+      <div class="wallet" id="wallet"></div>
+    </header>
+    <div class="xpbar" id="xpbar"><div class="xpbar-fill" id="xpfill"></div></div>
+    <section class="view" id="view"></section>
+  </main>
+</div>
+
+<nav class="bottomnav" id="bottomnav"></nav>
+<div class="modal-root" id="modalRoot"></div>
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/state.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/economy.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/hero.js"></script>
+<script src="js/forge.js"></script>
+<script src="js/content.js"></script>
+<script src="js/auction.js"></script>
+<script src="js/market.js"></script>
+<script src="js/arena.js"></script>
+<script src="js/comfort.js"></script>
+<script src="js/premium.js"></script>
+<script src="js/guild.js"></script>
+<script src="js/abyss.js"></script>
+<script src="js/team.js"></script>
+<script src="js/season.js"></script>
+<script src="js/cloud-config.js"></script>
+<script src="js/cloud.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

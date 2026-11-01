@@ -1,0 +1,8 @@
+# sauvegardes personnelles exportées (jamais en ligne)
+sauvegarde-*.json
+cryptoquest-*.json
+# outils de travail locaux
+.claude/
+node_modules/
+# plans internes (stratégie, monétisation, juridique) : jamais dans le dépôt public
+PLAN-*.md

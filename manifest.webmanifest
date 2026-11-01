@@ -1,0 +1,23 @@
+{
+  "name": "CryptoQuest",
+  "short_name": "CryptoQuest",
+  "description": "RPG dark fantasy de farm : combat automatique, équipement, arène, hôtel des ventes (prototype, économie simulée).",
+  "lang": "fr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0a0c",
+  "theme_color": "#0b0a0c",
+  "categories": ["games"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Combat", "url": "./index.html#combat", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Hôtel des ventes", "url": "./index.html#auction", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Arène", "url": "./index.html#arena", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
