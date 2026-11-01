@@ -705,6 +705,116 @@ body.reduce *, body.reduce *::before, body.reduce *::after { animation-duration:
   .tabs.seg { width: 100%; }
 }
 
+/* ---------- UI-1 : La Cité ---------- */
+/* navigation « ville » : le menu latéral devient un tiroir, la ville prend toute la largeur */
+body.nav-town { --side: 0px; }
+body.nav-town .sidebar { width: 270px; transform: translateX(-100%); transition: transform .25s; box-shadow: 20px 0 60px rgba(0,0,0,.6); }
+body.nav-town.menu-open .sidebar { transform: none; }
+body.nav-town.menu-open .scrim { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 35; }
+body.nav-town .menu-btn { display: grid; place-items: center; }
+.town-btn { display: none; font-size: 18px; }
+body.nav-town:not(.on-town) .town-btn { display: grid; place-items: center; }
+body.nav-town .view { max-width: 1440px; margin: 0 auto; }
+
+.town-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.town-head h2 { margin: 2px 0 0; font-family: var(--font-title); font-size: 26px; }
+.town-crier { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #5c4a26; background: rgba(201,162,74,.07); }
+.town-crier > span { font-size: 26px; }
+.town-crier > div { flex: 1; min-width: 0; }
+.town-wrap { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--line-2); box-shadow: 0 20px 60px rgba(0,0,0,.5); background: #0b090c; }
+.town-svg { display: block; width: 100%; height: auto; }
+
+/* décor */
+.town-svg .moon { fill: #e9dcc4; opacity: .85; }
+.town-svg.day .moon { fill: #f2b36a; opacity: .5; }
+.town-svg .square { fill: #2f282d; stroke: #3d3439; stroke-dasharray: 3 4; }
+.town-svg .wall { fill: none; }
+.town-svg .wall.palisade { stroke: #5a3d26; stroke-width: 5; stroke-dasharray: 2 3; }
+.town-svg .wall.muret { stroke: #4a4045; stroke-width: 7; }
+.town-svg .wall.rempart { stroke: #4c4248; stroke-width: 11; stroke-dasharray: 10 3; }
+.town-svg .wall.big { stroke-width: 15; }
+.town-svg .win { fill: #6b5a3a; }
+.town-svg.night .win { fill: #f2c66d; filter: drop-shadow(0 0 3px rgba(242,198,109,.8)); }
+
+/* bâtiments */
+.town-svg .bld { cursor: pointer; outline: none; }
+.town-svg .bld .shadow { fill: rgba(0,0,0,.45); }
+.town-svg .bld.open:hover, .town-svg .bld.open:focus-visible { filter: brightness(1.35) drop-shadow(0 0 8px rgba(232,200,126,.45)); }
+.town-svg .bld.locked { cursor: help; opacity: .75; }
+.town-svg .plate rect { fill: rgba(10,8,11,.82); stroke: #4b3d22; }
+.town-svg .plate text { fill: #e8c87e; font-family: var(--font-title); letter-spacing: .03em; }
+.town-svg .bld.locked .plate text { fill: #7d716a; }
+.town-svg .chantier-t { fill: #c9a24a; font-size: 9px; font-family: var(--font); font-weight: 700; }
+.town-svg .bang circle { fill: #c9303a; stroke: #e8c87e; stroke-width: 1.5; }
+.town-svg .bang text { fill: #fff; font-weight: 800; font-size: 13px; font-family: var(--font); }
+.town-svg .bang { animation: bangBob 1.4s ease-in-out infinite; }
+@keyframes bangBob { 50% { transform: translateY(-5px); } }
+
+/* signes de vie */
+.town-svg .smoke circle { fill: #6b6166; opacity: .35; animation: smoke 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.town-svg .smoke circle:nth-child(2) { animation-delay: 1.3s; } .town-svg .smoke circle:nth-child(3) { animation-delay: 2.6s; }
+@keyframes smoke { 0% { opacity: 0; transform: translateY(8px) scale(.6); } 40% { opacity: .4; } 100% { opacity: 0; transform: translateY(-14px) scale(1.4); } }
+.town-svg .embers { fill: #d8572a; animation: ember 1.6s ease-in-out infinite; }
+@keyframes ember { 50% { fill: #f4a227; } }
+.town-svg .flame { fill: #e8582a; transform-box: fill-box; transform-origin: bottom center; animation: flame .9s ease-in-out infinite alternate; filter: drop-shadow(0 0 6px rgba(255,120,40,.7)); }
+.town-svg .b-autel.sig .flame { transform: scale(1.4); fill: #ff7a2a; }
+@keyframes flame { to { transform: scaleY(1.15) scaleX(.9); } }
+.town-svg .water { fill: #3b6f82; }
+.town-svg .spark { fill: transparent; }
+.town-svg .b-fontaine.sig .water { fill: #6fd0e6; filter: drop-shadow(0 0 6px rgba(111,208,230,.8)); }
+.town-svg .b-fontaine.sig .spark { fill: #bff0ff; animation: ember 1s infinite; }
+.town-svg .birds path { fill: none; stroke: transparent; stroke-width: 1.5; }
+.town-svg .b-voliere.sig .birds path { stroke: #d9d0c8; animation: birds 3s ease-in-out infinite; }
+@keyframes birds { 50% { transform: translate(6px, -4px); } }
+.town-svg .torch { fill: #d8572a; }
+.town-svg .b-portes.sig .torch { fill: #ffb347; filter: drop-shadow(0 0 5px #ff8a2a); }
+.town-svg .vault-door { fill: #6b4a1e; stroke: #c9a24a; }
+.town-svg .b-tresor.sig .vault-door { fill: #c9a24a; filter: drop-shadow(0 0 6px rgba(232,200,126,.8)); }
+.town-svg .banner { fill: #7d1a22; }
+.town-svg .b-heraut.sig .banner { fill: #c9303a; animation: flame 1.2s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: top center; }
+.town-svg .flag { fill: #a3202a; animation: flame 1.4s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: left center; }
+.town-svg .lantern { fill: #6b5a3a; }
+.town-svg .b-encheres.sig .lantern { fill: #5fbf7a; filter: drop-shadow(0 0 6px #5fbf7a); }
+.town-svg .dome { fill: #4b3d22; stroke: #c9a24a; }
+.town-svg .coin { fill: transparent; }
+.town-svg .b-banque.sig .coin { fill: #e8c87e; animation: bangBob 1s infinite; }
+.town-svg .legion-tent { fill: #3a2f1b; stroke: #6b5a3a; }
+.town-svg .legion-flag { fill: #6b5a3a; }
+body.legion-on .town-svg .legion-tent { fill: #8a6a2a; stroke: #e8c87e; }
+body.legion-on .town-svg .legion-flag { fill: #e8c87e; }
+.town-svg .emblem { font-size: 18px; }
+.town-svg .rift { fill: #2a0f3d; stroke: #8b5cf6; stroke-width: 2; filter: drop-shadow(0 0 10px rgba(139,92,246,.7)); }
+.town-svg .rift-glow { fill: none; stroke: #c9b3ff; stroke-width: 2; animation: ember 2s infinite; }
+.town-svg .bld.locked .rift { fill: #1a1020; stroke: #3c2a5a; filter: none; }
+
+/* liste des bâtiments */
+.bld-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.bld-card { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; background: var(--bg-2); border: 1px solid var(--line); color: var(--text); position: relative; }
+.bld-card:hover { border-color: #4b3d22; }
+.bld-card .bc-ico { font-size: 22px; width: 30px; text-align: center; }
+.bld-card b { display: block; font-size: 13px; }
+.bld-card small { display: block; font-size: 11.5px; color: var(--muted); line-height: 1.3; }
+.bld-card.locked { opacity: .55; border-style: dashed; }
+.bld-card.sig { border-color: #5a2a30; }
+.bc-bang { margin-left: auto; width: 20px; height: 20px; border-radius: 50%; background: var(--red-2); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: 12px; flex: none; }
+
+/* cinématique de construction */
+.build-cine { text-align: center; }
+.build-cine h2 { font-family: var(--font-title); color: var(--gold-2); margin: 6px 0; }
+.build-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 12px; }
+.build-item { display: flex; flex-direction: column; align-items: center; gap: 4px; max-width: 200px; }
+.build-item small { color: var(--muted); font-size: 12px; }
+.build-svg { width: 200px; height: 196px; animation: rise 1.1s cubic-bezier(.2,.9,.3,1.2) both; filter: drop-shadow(0 10px 20px rgba(0,0,0,.6)); }
+.build-svg .win { fill: #f2c66d; }
+.build-svg .plate { display: none; }
+@keyframes rise { from { transform: translateY(40px) scaleY(.2); opacity: 0; } to { transform: none; opacity: 1; } }
+
+@media (max-width: 720px) {
+  .town-wrap { overflow-x: auto; margin: 0 -16px; border-radius: 0; border-left: 0; border-right: 0; scrollbar-width: none; }
+  .town-svg { min-width: 820px; max-height: none; }
+  .town-head h2 { font-size: 20px; }
+}
+
 @media (max-width: 1180px) {
   .zones { grid-template-columns: repeat(3, minmax(0,1fr)); }
   .stat-tiles { grid-template-columns: repeat(3, minmax(0,1fr)); }

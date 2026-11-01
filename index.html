@@ -20,19 +20,20 @@
 <body>
 <div class="app">
   <aside class="sidebar" id="sidebar">
-    <a class="brand" href="#dashboard">
+    <a class="brand" href="#">
       <span class="brand-mark">◆</span>
       <span class="brand-name">Crypto<b>Quest</b></span>
     </a>
     <nav class="nav" id="nav"></nav>
     <div class="ad-slot" id="adSlot"></div>
-    <div class="version">V2 · lots A, E et B · économie simulée</div>
+    <div class="version">V3 · La Cité · économie simulée</div>
   </aside>
   <div class="scrim" id="scrim" data-act="closeMenu"></div>
 
   <main class="main">
     <header class="topbar">
       <button class="icon-btn menu-btn" data-act="openMenu" aria-label="Menu">☰</button>
+      <button class="icon-btn town-btn" data-act="goTown" aria-label="Retour à la ville" title="Retour à la ville">🏰</button>
       <h1 class="page-title" id="pageTitle">Accueil</h1>
       <div class="wallet" id="wallet"></div>
     </header>
@@ -66,6 +67,7 @@
 <script src="js/cloud-config.js"></script>
 <script src="js/cloud.js"></script>
 <script src="js/progress.js"></script>
+<script src="js/town.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

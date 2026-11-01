@@ -9,6 +9,10 @@ RPG dark fantasy de farm avec économie simulée. Aucun paiement, aucune crypto 
 
 La partie est sauvegardée dans le navigateur (localStorage). Export, import et remise à zéro se font depuis la page Profil.
 
+## La Cité (UI-1)
+
+L'accueil est une ville : chaque bâtiment ouvre une page du jeu (rien ne change à l'intérieur). Elle passe de Hameau à Bourg, Ville, Cité puis Capitale avec le niveau ; les bâtiments à venir apparaissent en chantier, et une courte cinématique annonce chaque construction. Un « ! » signale ce qui attend le joueur. Réglages → Navigation permet de revenir au menu classique. Fichier : `js/town.js`.
+
 ## V3 — le jeu complet (01/11/2026)
 
 | Lot | Contenu |

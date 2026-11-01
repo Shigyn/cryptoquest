@@ -23,6 +23,7 @@
   CQ.$('#adSlot').innerHTML = CQ.adBanner('Bannière 220×120');
   window.addEventListener('hashchange', CQ.route);
   CQ.applySettings();
+  CQ.applyNav(); // la Cité (par défaut) ou le menu classique
   window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', CQ.applySettings);
   CQ.route();
   CQ.registerSW();
@@ -54,7 +55,7 @@
       <span>Énergie restante</span><span>${CQ.fmt(Math.floor(CQ.energyNow()))} / ${CQ.fmt(CQ.playerStats().emax)}</span></div>${tail}
       <div class="actions"><button class="btn primary" data-act="closeModal">Reprendre l'aventure</button></div>`);
   } else if (CQ.loginAvailable()) {
-    CQ.toast('📅 Votre bonus de connexion vous attend sur l’accueil.', 'r4');
+    CQ.toast('🎺 Le héraut vous attend : votre bonus de connexion est prêt.', 'r4');
   }
   CQ.save();
   if (CQ.tutoActive()) CQ.tutoGo(CQ.settings().tutorial.step); // nouvelle partie : tutoriel guidé

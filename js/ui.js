@@ -8,7 +8,7 @@ CQ.$ = $;
 
 CQ.NAV = [
   ['Jeu', [
-    ['dashboard', '🏠', 'Accueil'], ['combat', '⚔️', 'Combat'], ['hero', '🧝', 'Héros'], ['inventory', '🎒', 'Inventaire'], ['equipment', '🛡️', 'Équipement'],
+    ['town', '🏰', 'La Cité'], ['dashboard', '🏠', 'Tableau de bord'], ['combat', '⚔️', 'Combat'], ['hero', '🧝', 'Héros'], ['inventory', '🎒', 'Inventaire'], ['equipment', '🛡️', 'Équipement'],
     ['chests', '📦', 'Coffres'], ['forge', '🔨', 'Forge'], ['quests', '📜', 'Quêtes'], ['abyss', '👁️', 'Abysses'], ['season', '🎖️', 'Saison'],
   ]],
   ['Joueurs', [
@@ -76,9 +76,9 @@ CQ.render = () => {
 CQ.refresh = CQ.render;
 
 CQ.route = () => {
-  const id = location.hash.slice(1) || 'dashboard';
+  const id = location.hash.slice(1) || (CQ.home ? CQ.home() : 'dashboard');
   const changed = CQ.ui.page !== id;
-  CQ.ui.page = CQ.PAGES[id] ? id : 'dashboard';
+  CQ.ui.page = CQ.PAGES[id] ? id : (CQ.home ? CQ.home() : 'dashboard');
   document.body.classList.remove('menu-open');
   CQ.render();
   if (changed) window.scrollTo(0, 0);
