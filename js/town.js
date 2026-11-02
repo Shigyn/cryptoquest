@@ -188,11 +188,6 @@ CQ.applyNav = () => {
 (() => {
   const r = CQ.render;
   CQ.render = CQ.refresh = () => { r(); document.body.classList.toggle('on-town', CQ.ui.page === CQ.home()); document.body.classList.toggle('legion-on', CQ.isPremium()); };
-  // le réglage « Navigation » dans la carte Affichage des Réglages
-  const sr = P.settings.render;
-  P.settings.render = () => sr().replace('<div class="set-row"><span>Grands nombres', `<div class="set-row"><span>Navigation<div class="small dim">La Cité, ou le menu classique (accessibilité, lecteurs d’écran).</div></span>
-    <div class="tabs seg" style="margin:0"><button class="tab ${CQ.navMode() === 'ville' ? 'on' : ''}" data-act="setNav" data-arg="ville">La Cité</button><button class="tab ${CQ.navMode() === 'menu' ? 'on' : ''}" data-act="setNav" data-arg="menu">Menu</button></div></div>
-    <div class="set-row"><span>Grands nombres`);
 })();
 A.setNav = (v) => { CQ.state.settings.nav = v; CQ.applyNav(); CQ.save(); CQ.refresh(); };
 

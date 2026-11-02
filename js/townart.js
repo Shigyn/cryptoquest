@@ -35,11 +35,14 @@ CQ.townScene = () => {
 // le plateau s'ouvre sur la Maison du héros
 // ---------- Hub plein écran ----------
 // Le plateau prend tout l'écran ; titre, bonus du héraut et dock de raccourcis flottent par-dessus.
-CQ.DOCK = [['hero', '🧝', 'Héros', 'desk'], ['inventory', '🎒', 'Inventaire', 'desk'], ['forge', '🔨', 'Forge'], ['quests', '📜', 'Quêtes'], ['chests', '📦', 'Coffres'], ['mail', '📬', 'Courrier'], ['season', '🎖️', 'Saison'], ['leaderboard', '🏆', 'Gloire']];
+// colonnes d'icônes rondes de part et d'autre de la ville (codes du genre RPG mobile)
+CQ.HUB_LEFT = [['quests', '📜', 'Quêtes'], ['mail', '📬', 'Courrier'], ['chests', '📦', 'Coffres'], ['faucet', '💧', 'Fontaine']];
+CQ.HUB_RIGHT = [['shop', '🛒', 'Boutique'], ['season', '🎖️', 'Saison'], ['leaderboard', '🏆', 'Gloire'], ['premium', '🦅', 'Légion']];
 CQ.townDock = () => {
-  const b = CQ.badges();
-  return `<nav class="town-dock" aria-label="Raccourcis">${CQ.DOCK.filter(([id]) => CQ.unlocked(id)).map(([id, ic, l, only]) =>
-    `<a class="dk ${only === 'desk' ? 'dk-desk' : ''}" href="#${id}"><span class="dk-ico">${ic}${b[id] ? '<i class="dk-dot"></i>' : ''}</span><span class="dk-l">${l}</span></a>`).join('')}</nav>`;
+  const b = CQ.badges(), col = (list) => list.filter(([id]) => CQ.unlocked(id)).map(([id, ic, l]) =>
+    `<a class="dk" href="#${id}"><span class="dk-ico">${ic}${b[id] ? '<i class="dk-dot"></i>' : ''}</span><span class="dk-l">${l}</span></a>`).join('');
+  const gift = CQ.loginAvailable() ? `<button class="dk gift" data-act="claimLogin" title="Bonus de connexion du jour"><span class="dk-ico">🎁<i class="dk-dot"></i></span><span class="dk-l">Bonus</span></button>` : '';
+  return `<nav class="hub-col left" aria-label="Raccourcis">${gift}${col(CQ.HUB_LEFT)}</nav><nav class="hub-col right" aria-label="Raccourcis">${col(CQ.HUB_RIGHT)}</nav>`;
 };
 (() => {
   const render = P.town.render;
@@ -54,8 +57,7 @@ CQ.townDock = () => {
       stage.append(wr);
       const head = t.content.querySelector('.town-head'), crier = t.content.querySelector('.town-crier');
       if (head) stage.append(head);
-      // le bonus du héraut devient un médaillon cadeau (la bannière cachait les rubans)
-      if (crier) { crier.remove(); stage.insertAdjacentHTML('beforeend', `<button class="hub-gift" data-act="claimLogin" title="Bonus de connexion du jour"><span class="dk-ico">🎁<i class="dk-dot"></i></span><span class="dk-l">Bonus du jour</span></button>`); }
+      if (crier) crier.remove(); // le bonus du héraut est dans la colonne de gauche
       stage.insertAdjacentHTML('beforeend', CQ.townDock());
     }
     return t.innerHTML;

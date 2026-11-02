@@ -10,7 +10,7 @@ CQ.renderWallet = () => {
   const tip = en >= ps.emax ? (over ? 'Surcharge : la recharge reprend sous le maximum' : 'Énergie pleine')
     : `+1 dans ${Math.ceil(CQ.energyNextIn(ps) / 1000)} s · pleine dans ${CQ.fmtDur(CQ.energyFullIn(ps))}`;
   const pts = CQ.attrPoints().free + CQ.talentPoints().free;
-  const purse = (cur, val, cls, title, opt) => `<span class="purse ${opt ? 'opt' : ''}" data-cur="${cur}" title="${title}">${CQ.CUR[cur].ico}<b class="${cls}">${cur === 'crypto' ? CQ.fmtUsd(val, 2) : CQ.fmt(val)}</b></span>`;
+  const purse = (cur, val, cls, title, opt) => `<span class="purse ${opt ? 'opt' : ''}" data-cur="${cur}" title="${title}">${CQ.CUR[cur].ico}<b class="${cls}">${cur === 'crypto' ? CQ.fmtUsd(val, 2) : CQ.fmt(val)}</b>${cur === 'fp' || cur === 'gems' ? '<a class="pp" href="#shop" aria-label="Obtenir plus" title="Obtenir plus">+</a>' : ''}</span>`;
   CQ.setHtml1('#wallet',
     `<a class="hud-portrait ${pts ? 'pts' : ''}" href="#hero" title="Niveau ${s.level} · ${CQ.fmt(s.xp)} / ${CQ.fmt(need)} XP${pts ? ` · ${pts} point${pts > 1 ? 's' : ''} à répartir` : ''}">
       <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="19" class="ring-bg"/><circle cx="22" cy="22" r="19" class="ring" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C * (1 - xpPct)).toFixed(1)}"/></svg>

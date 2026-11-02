@@ -1209,3 +1209,78 @@ body {
   .hs-power b { font-size: 21px; }
   .auto-pts { flex-direction: column; align-items: stretch; }
 }
+
+/* =========================================================
+   Coque 100 % mobile : plus de menu latéral, barre du bas partout, colonnes d'icônes sur la ville
+   ========================================================= */
+:root { --side: 0px; --bnav: 78px; }
+.sidebar, .menu-btn, .scrim { display: none !important; }
+.main { margin-left: 0; }
+.view { max-width: 1280px; margin: 0 auto; padding-bottom: calc(var(--bnav) + 40px); }
+body.page-town .view { padding-bottom: 0; }
+.town-btn { display: none; }
+body:not(.on-town) .town-btn { display: grid !important; place-items: center; font-size: 30px; line-height: 1; padding-bottom: 4px; color: #ffe7a8; font-weight: 700; }
+.int-back { display: none; }
+
+.bottomnav { display: flex !important; justify-content: center; align-items: flex-end; gap: clamp(6px, 3vw, 34px); position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; height: var(--bnav); padding: 0 8px env(safe-area-inset-bottom);
+  background: linear-gradient(180deg, rgba(34,20,40,.97), rgba(12,8,15,.99)); border-top: 2px solid var(--frame); box-shadow: 0 -8px 24px rgba(0,0,0,.55); }
+.bottomnav .bn { position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 64px; padding: 0 0 8px; color: #c9b8a6; font-family: var(--font-title); font-size: 11px; text-shadow: 0 1px 2px #000; cursor: pointer; }
+.bottomnav .ni { position: relative; width: 46px; height: 46px; display: grid; place-items: center; font-size: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #4a2558, #22102a 60%, #140a19); border: 2px solid var(--frame-2); box-shadow: 0 3px 0 #3d2a10; transition: transform .15s; }
+.bottomnav .bn:hover .ni { transform: translateY(-2px); }
+.bottomnav .bn.active { color: #ffe7a8; }
+.bottomnav .bn.active .ni { border-color: #ffe08a; box-shadow: 0 3px 0 #3d2a10, 0 0 16px rgba(255,210,110,.6); }
+.bottomnav .bn.big .ni { width: 70px; height: 70px; font-size: 34px; margin-top: -26px; background: radial-gradient(circle at 35% 30%, #ff5a62, #b51f2a 55%, #6e1018); border: 4px solid #ffd36b; box-shadow: 0 5px 0 #4a0a10, 0 0 22px rgba(224,64,74,.55); }
+.bottomnav .bn.big { color: #ffe7a8; }
+.bn-dot { position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; border-radius: 50%; background: #e0303c; border: 2px solid #ffe7a8; }
+.toasts { bottom: calc(var(--bnav) + 14px); }
+.objectives { left: 16px; bottom: calc(var(--bnav) + 14px); }
+.fight-fab { bottom: calc(var(--bnav) + 18px); }
+.town-stage { height: calc(100dvh - var(--hub-top, 64px) - var(--bnav)); }
+
+/* monnaies : « + » pour en obtenir */
+.purse { position: relative; }
+.purse .pp { position: absolute; right: -6px; bottom: -6px; width: 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(180deg, #7ed36b, #3d8a2e); border: 2px solid #e8ffd0; color: #fff; font-weight: 900; font-size: 13px; line-height: 1; box-shadow: 0 2px 0 #1e4a16; }
+
+/* ville : colonnes d'icônes */
+.town-dock, .hub-gift { display: none !important; }
+.hub-col { position: absolute; z-index: 3; top: 70px; display: flex; flex-direction: column; gap: 12px; }
+.hub-col.left { left: 14px; }
+.hub-col.right { right: 14px; }
+.hub-col .dk, .ms-grid .dk { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 64px; background: none; border: 0; cursor: pointer; }
+.hub-col .dk-ico { width: 56px; height: 56px; font-size: 27px; }
+.hub-col .dk.gift .dk-ico { border-color: #ffd36b; box-shadow: 0 4px 0 #5e3f14, 0 0 22px rgba(255,200,90,.65); animation: bangBob 1.6s ease-in-out infinite; }
+
+/* feuille « Plus » */
+.more-sheet { position: fixed; inset: 0; z-index: 60; }
+.ms-bg { position: absolute; inset: 0; background: rgba(5,3,8,.6); backdrop-filter: blur(3px); animation: fadeIn .18s ease; }
+.ms-panel { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: min(720px, 100%); max-height: 78dvh; overflow-y: auto; padding: 10px 18px calc(var(--bnav) + 18px);
+  border-radius: 22px 22px 0 0; border: 2px solid var(--frame-2); border-bottom: 0; background: radial-gradient(ellipse at 50% 0%, rgba(120,40,140,.35), transparent 60%), linear-gradient(180deg, #22162a, #120c16);
+  box-shadow: 0 -20px 60px rgba(0,0,0,.7); animation: sheetUp .22s cubic-bezier(.2,.9,.3,1); }
+.more-sheet.out .ms-panel { animation: sheetDown .18s ease forwards; }
+.more-sheet.out .ms-bg { animation: fadeOut .18s ease forwards; }
+@keyframes sheetUp { from { transform: translate(-50%, 100%); } }
+@keyframes sheetDown { to { transform: translate(-50%, 100%); } }
+.ms-grip { width: 48px; height: 5px; border-radius: 9px; background: var(--frame-2); margin: 0 auto 10px; opacity: .7; }
+.ms-group { margin: 12px 0 8px; font-family: var(--font-title); color: var(--gold-2); font-size: 14px; text-shadow: 0 2px 4px #000; }
+.ms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 12px 6px; }
+.ms-grid .dk-ico { width: 54px; height: 54px; font-size: 25px; }
+.ms-grid .dk.locked { opacity: .5; cursor: help; }
+.ms-grid .dk-l small { display: block; font-family: var(--font); font-size: 9.5px; color: var(--muted); }
+
+@media (max-width: 720px) {
+  :root { --bnav: 70px; }
+  .bottomnav { gap: 0; justify-content: space-around; }
+  .bottomnav .bn { min-width: 0; flex: 1; font-size: 10px; }
+  .bottomnav .ni { width: 40px; height: 40px; font-size: 19px; }
+  .bottomnav .bn.big .ni { width: 62px; height: 62px; font-size: 30px; margin-top: -24px; }
+  .town-stage { height: calc(100dvh - var(--hub-top, 58px) - var(--bnav) - env(safe-area-inset-bottom)); }
+  .hub-col { top: 64px; gap: 8px; }
+  .hub-col.left { left: 6px; }
+  .hub-col.right { right: 6px; }
+  .hub-col .dk { min-width: 54px; }
+  .hub-col .dk-ico { width: 46px; height: 46px; font-size: 22px; }
+  .objectives { left: 12px; right: 12px; bottom: calc(var(--bnav) + 10px); }
+  .fight-fab { bottom: calc(var(--bnav) + 14px); }
+  .toasts { bottom: calc(var(--bnav) + 10px); }
+}
+.town-stage .town-head { display: none; }
