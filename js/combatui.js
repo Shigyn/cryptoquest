@@ -46,7 +46,11 @@ A.bossAuto = () => {
 // ---------- Écran de combat ----------
 (() => {
   const render = P.combat.render;
-  P.combat.render = () => `${render()}<button class="fight-fab" id="fightFab" data-act="toggleAuto"></button>`;
+  // route qui défile sous les combattants
+  P.combat.render = () => `${render().replace('<div class="arena-mode" id="arenaMode"></div>', '<div class="road" aria-hidden="true"></div><div class="arena-mode" id="arenaMode"></div>')}<button class="fight-fab" id="fightFab" data-act="toggleAuto"></button>`;
+  // l'ennemi qui apparaît arrive du bout de la route
+  const mon = P.combat.monster;
+  P.combat.monster = () => { mon(); if (CQ.combat.m) CQ.ui.spawnT = Date.now(); };
   const ch = P.combat.challenges;
   P.combat.challenges = () => {
     ch();
@@ -58,7 +62,12 @@ A.bossAuto = () => {
       🔁 Défier le boss automatiquement à ${CQ.BOSS_KILLS} victoires${st == null ? ' <span class="dim">(après une première victoire)</span>' : st === 'off' ? ' <span class="dim">(coupé)</span>' : ''}</label>`);
   };
   const tick = P.combat.tick;
-  P.combat.tick = () => { tick(); CQ.fabSync(); };
+  P.combat.tick = () => {
+    tick(); CQ.fabSync();
+    // le héros marche entre deux combats et pendant l'arrivée de l'ennemi (pur visuel : le moteur ne change pas)
+    const ar = document.getElementById('arena'), c = CQ.combat;
+    if (ar) ar.classList.toggle('walking', !!CQ.state.auto && !c.deadUntil && !CQ.isResting() && (!c.m || Date.now() - (CQ.ui.spawnT || 0) < 700));
+  };
 })();
 CQ.fabSync = () => {
   const f = document.getElementById('fightFab');
