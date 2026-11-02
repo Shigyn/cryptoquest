@@ -478,7 +478,7 @@ A.openChest = (k) => {
   const res = CQ.openChest(k);
   if (!res) return;
   CQ.save();
-  CQ.openModal(`<h2>${c.name}</h2><div class="opening" id="opening" style="--cg:${c.glow}"><div class="chest-ico">${c.icon}</div></div><div class="reveal" id="reveal"></div>`, { wide: true, onClose: () => CQ.refresh() });
+  CQ.openModal(`<h2>${c.name}</h2><div class="opening" id="opening" style="--cg:${c.glow};--best:var(--r${Math.max(0, ...res.items.map((i) => i.rarity))})"><div class="op-rays"></div><div class="chest-ico">${c.icon}</div></div><div class="reveal" id="reveal"></div>`, { wide: true, onClose: () => CQ.refresh() });
   setTimeout(() => { const o = CQ.$('#opening'); if (o) o.classList.add('burst'); }, 1200);
   setTimeout(() => {
     const o = CQ.$('#opening'), r = CQ.$('#reveal');
@@ -486,8 +486,9 @@ A.openChest = (k) => {
     if (o) o.remove();
     r.innerHTML = res.items.map((it, i) => `<div class="rv r${it.rarity}" style="animation-delay:${i * 0.25}s">${CQ.itemTile(it)}<div class="rn">${CQ.esc(it.name)}<br><span class="small">${CQ.RARITIES[it.rarity].name}</span></div></div>`).join('') +
       `<div class="rv" style="animation-delay:${res.items.length * 0.25}s;justify-content:center"><div class="big c-cq">+${CQ.fmt(res.cq)}</div><div class="small muted">CQ</div></div>` +
-      (res.energy ? `<div class="rv" style="animation-delay:${(res.items.length + 1) * 0.25}s;justify-content:center"><div class="big c-en">+${CQ.fmt(res.energy)}</div><div class="small muted">énergie</div></div>` : '');
-    r.insertAdjacentHTML('afterend', `<div class="actions">${S().chests[k] ? `<button class="btn" data-act="openChest" data-arg="${k}">En ouvrir un autre (${S().chests[k]})</button>` : ''}<button class="btn primary" data-act="closeModal">Continuer</button></div>`);
+      (res.energy ? `<div class="rv" style="animation-delay:${(res.items.length + 1) * 0.25}s;justify-content:center"><div class="big c-en">+${CQ.fmt(res.energy)}</div><div class="small muted">énergie</div></div>` : '') +
+      (res.stones ? `<div class="rv r3" style="animation-delay:${(res.items.length + 2) * 0.25}s;justify-content:center"><div class="big">💠 ${res.stones}</div><div class="small muted">pierre${res.stones > 1 ? 's' : ''} de protection</div></div>` : '');
+    r.insertAdjacentHTML('afterend', `<div class="actions">${S().chests[k] > 1 ? `<button class="btn gold" data-act="openAllChests" data-arg="${k}">Tout ouvrir (${S().chests[k]})</button>` : ''}${S().chests[k] ? `<button class="btn" data-act="openChest" data-arg="${k}">En ouvrir un autre (${S().chests[k]})</button>` : ''}<button class="btn primary" data-act="closeModal">Continuer</button></div>`);
   }, 1650);
 };
 

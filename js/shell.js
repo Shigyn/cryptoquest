@@ -78,3 +78,50 @@ A.claimAll = () => {
   const qr = P.quests.render;
   P.quests.render = () => (CQ.claimAllReady() ? `<button class="btn gold block claim-all" data-act="claimAll">🎁 Tout récupérer</button>` : '') + qr();
 })();
+
+// ---------- Écran de chargement ----------
+window.addEventListener('load', () => {
+  const sp = document.getElementById('splash');
+  if (sp) setTimeout(() => { sp.classList.add('out'); setTimeout(() => sp.remove(), 600); }, 500);
+  // récompense du jour : le calendrier s'ouvre tout seul une fois par jour, comme dans les jeux mobiles
+  setTimeout(() => {
+    if (CQ.loginAvailable() && !(CQ.tutoActive && CQ.tutoActive()) && !document.getElementById('modalRoot').classList.contains('on')) A.claimLogin();
+  }, 1600);
+});
+
+// ---------- Calendrier de connexion (7 jours) ----------
+(() => {
+  const claim = A.claimLogin;
+  A.claimLogin = () => {
+    if (!CQ.loginAvailable()) return;
+    const next = CQ.loginNextStreak(), start = Math.floor((next - 1) / 7) * 7 + 1;
+    const days = Array.from({ length: 7 }, (_, i) => start + i);
+    CQ.openModal(`<div class="cal"><div class="kicker">Récompense de connexion</div><h2>Jour ${next}</h2>
+      <div class="cal-grid">${days.map((d) => {
+        const r = CQ.loginReward(d), st = d < next ? 'done' : d === next ? 'today' : '';
+        return `<div class="cal-day ${st} ${d % 7 === 0 ? 'big' : ''}"><div class="cd-n">Jour ${d}</div><div class="cd-ico">${d % 7 === 0 ? '🎁' : '💰'}</div>
+          <div class="cd-r">${CQ.fmt(r.cq)} CQ<br>${r.fp} FP</div>${st === 'done' ? '<div class="cd-ok">✓</div>' : ''}</div>`;
+      }).join('')}</div>
+      <div class="small muted mt">Revenez chaque jour : la récompense grandit avec la série. Une journée manquée remet la série à 1.</div>
+      <div class="actions"><button class="btn gold block" data-act="claimLoginNow">Récupérer</button></div></div>`);
+  };
+  A.claimLoginNow = () => { CQ.closeModal(); claim(); CQ.sfx && CQ.sfx('loot'); };
+})();
+
+// ---------- Coffres : tout ouvrir d'un coup ----------
+A.openAllChests = (k) => {
+  const c = CQ.CHESTS[k], items = [];
+  let cq = 0, energy = 0, stones = 0, n = 0;
+  while (CQ.state.chests[k] > 0 && n < 200) {
+    const res = CQ.openChest(k);
+    if (!res) break;
+    n++; items.push(...res.items); cq += res.cq; energy += res.energy || 0; stones += res.stones || 0;
+  }
+  if (!n) return;
+  CQ.save();
+  items.sort((a, b) => b.rarity - a.rarity);
+  CQ.openModal(`<h2>${c.icon} ${n} × ${c.name}</h2>
+    <div class="kv"><span>CQ</span><span class="c-cq">+${CQ.fmt(cq)}</span>${energy ? `<span>Énergie</span><span class="c-en">+${CQ.fmt(energy)}</span>` : ''}${stones ? `<span>Pierres de protection</span><span>💠 +${stones}</span>` : ''}<span>Objets</span><span>${items.length}</span></div>
+    <div class="items mt">${items.map((it) => CQ.itemTile(it)).join('')}</div>
+    <div class="actions"><button class="btn primary" data-act="closeModal">Continuer</button></div>`, { wide: true, onClose: () => CQ.refresh() });
+};
