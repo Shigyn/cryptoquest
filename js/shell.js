@@ -125,3 +125,22 @@ A.openAllChests = (k) => {
     <div class="items mt">${items.map((it) => CQ.itemTile(it)).join('')}</div>
     <div class="actions"><button class="btn primary" data-act="closeModal">Continuer</button></div>`, { wide: true, onClose: () => CQ.refresh() });
 };
+
+// ---------- Messages regroupés : inventaire plein ----------
+// Un seul message qui compte les objets revendus, au lieu d'un message par objet.
+(() => {
+  const toast = CQ.toast;
+  let agg = null;
+  CQ.toast = (html, kind) => {
+    const m = /^Inventaire plein : .* revendu (\d+) CQ\.$/.exec(String(html));
+    if (!m) return toast(html, kind);
+    if (agg && agg.el.isConnected && Date.now() - agg.t < 3000) {
+      agg.n++; agg.cq += Number(m[1]); agg.t = Date.now();
+      agg.el.innerHTML = `🎒 Inventaire plein : ${agg.n} objets revendus (+${CQ.fmt(agg.cq)} CQ). Faites de la place à la forge.`;
+      return;
+    }
+    toast(`🎒 Inventaire plein : 1 objet revendu (+${CQ.fmt(Number(m[1]))} CQ). Faites de la place à la forge.`, 'red');
+    const box = document.getElementById('toasts');
+    agg = { el: box && box.lastElementChild, n: 1, cq: Number(m[1]), t: Date.now() };
+  };
+})();
