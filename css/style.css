@@ -1426,3 +1426,9 @@ body.page-combat .arena.idle-stage .fighter .sprite { font-size: 84px; height: 1
 .arena.shake { animation: arenaShake .3s ease-in-out; }
 @keyframes arenaShake { 25% { transform: translate(-5px, 2px); } 50% { transform: translate(5px, -2px); } 75% { transform: translate(-3px, 1px); } }
 @media (max-width: 720px) { .bp-bar { width: 56px; } .boss-prog { top: 8px; left: 8px; } }
+.boss-intro { position: absolute; inset: 0; z-index: 7; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; pointer-events: none;
+  background: linear-gradient(180deg, transparent 25%, rgba(120,10,20,.75) 42%, rgba(120,10,20,.75) 58%, transparent 75%); animation: bossIntro 1.8s ease forwards; }
+.bi-warn { font-family: var(--font-title); font-weight: 700; font-size: 30px; letter-spacing: .2em; color: #ffd36b; text-shadow: 0 0 18px rgba(255,80,60,.9), 0 3px 0 #3a0a0e; }
+.bi-name { font-family: var(--font-title); font-size: 20px; color: #fff; text-shadow: 0 2px 6px #000; }
+@keyframes bossIntro { 0% { opacity: 0; transform: scaleY(.2); } 15% { opacity: 1; transform: none; } 80% { opacity: 1; } 100% { opacity: 0; } }
+body.reduce .boss-intro { display: none; }

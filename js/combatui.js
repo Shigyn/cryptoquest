@@ -107,3 +107,15 @@ CQ.on((type, d) => {
     if (CQ.combat.m && CQ.isBoss(CQ.combat.m)) { ar.classList.remove('shake'); void ar.offsetWidth; ar.classList.add('shake'); }
   }
 });
+
+// ---------- Annonce de boss ----------
+CQ.on((type) => {
+  if (type !== 'spawn' || CQ.ui.page !== 'combat') return;
+  const m = CQ.combat.m, ar = document.getElementById('arena');
+  if (!m || !ar || !CQ.isBoss(m)) return;
+  const el = document.createElement('div');
+  el.className = 'boss-intro';
+  el.innerHTML = `<div class="bi-warn">⚠️ BOSS ⚠️</div><div class="bi-name">${m.icon} ${CQ.esc(m.name)}</div>`;
+  ar.appendChild(el);
+  setTimeout(() => el.remove(), 1800);
+});

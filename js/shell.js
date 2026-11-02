@@ -154,4 +154,4 @@ A.openAllChests = (k) => {
     return r;
   };
 })();
-window.addEventListener('load', () => setTimeout(() => { if (CQ.loginAvailable() && document.getElementById('modalRoot').classList.contains('on')) CQ._calWait = true; }, 1700));
+window.addEventListener('load', () => setTimeout(() => { const mr = document.getElementById('modalRoot'); if (CQ.loginAvailable() && mr.classList.contains('on') && !mr.querySelector('.cal')) CQ._calWait = true; }, 1700));
