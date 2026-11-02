@@ -1329,3 +1329,14 @@ body:not(.on-town) .town-btn { display: grid !important; place-items: center; fo
 .card.pack .pa { font-family: var(--font-title); font-size: 18px; color: #ffe7a8; text-shadow: 0 2px 4px #000; }
 .card.pack.glow { border-color: #ffd36b; box-shadow: 0 0 26px rgba(255,200,90,.35), inset 0 0 0 1px rgba(255,220,150,.1); }
 .card.pack .ribbon { position: absolute; top: 12px; right: -30px; transform: rotate(35deg); padding: 3px 34px; border-radius: 0; background: linear-gradient(180deg, #e0404a, #8a1820); color: #ffe7a8; border: 0; box-shadow: 0 2px 6px rgba(0,0,0,.5); }
+
+/* ---------- Arène façon PvP mobile ---------- */
+.arena-hero { border: 2px solid var(--frame-2) !important; border-radius: 18px !important; background: radial-gradient(ellipse at 15% 40%, rgba(255,200,90,.18), transparent 45%), radial-gradient(ellipse at 80% 0%, rgba(160,30,40,.3), transparent 60%), linear-gradient(180deg, #24152c, #120c16) !important; box-shadow: inset 0 0 0 1px rgba(255,220,150,.08), 0 12px 34px rgba(0,0,0,.5); }
+.arena-hero span[style*="font-size:46px"] { font-size: 64px !important; filter: drop-shadow(0 0 16px rgba(255,200,110,.55)) drop-shadow(0 6px 6px rgba(0,0,0,.6)); }
+.arena-hero .big { font-family: var(--font-title); color: #ffe7a8; text-shadow: 0 2px 6px #000; }
+.card.opp { text-align: center; background: radial-gradient(ellipse at 50% 18%, rgba(160,30,40,.32), transparent 55%), linear-gradient(180deg, #22162a, #120c16); }
+.card.opp > .row { flex-direction: column; align-items: center; gap: 8px !important; }
+.card.opp .opp-ico { width: 78px; height: 78px; display: grid; place-items: center; font-size: 42px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #4a2558, #1a0d20); border: 3px solid var(--gold-2); box-shadow: 0 4px 0 #3d2a10, 0 0 18px rgba(255,200,110,.3); }
+.card.opp > .row b { display: inline-block; padding: 3px 14px; border-radius: 6px; background: linear-gradient(180deg, #a3202a, #6e1219); border: 2px solid var(--gold-2); color: #ffe7a8; font-family: var(--font-title); text-shadow: 0 1px 2px #000; box-shadow: 0 3px 0 #3a0a0e; }
+.card.opp .kv { text-align: left; }
+.card.opp .btn.primary { font-size: 15px; padding: 12px; }
