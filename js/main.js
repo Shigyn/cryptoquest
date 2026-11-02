@@ -48,12 +48,16 @@
       <div class="actions"><button class="btn ghost" data-act="closeModal">Plus tard</button><button class="btn primary" data-act="goClose" data-arg="hero">Répartir mes points</button></div>`);
   } else if (off) {
     const tail = off.kills ? '' : '<div class="small dim mt">Pas assez d’énergie pour terminer un combat.</div>';
-    CQ.openModal(`<h2>Pendant votre absence</h2>
-      <div class="muted">Votre héros a combattu pendant votre absence (${CQ.fmtDur(off.away)}), à ${Math.round(off.eff * 100)} % de son rendement, tant qu’il avait de l’énergie.</div>
-      <div class="kv mt"><span>Énergie dépensée</span><span class="c-en">${CQ.fmt(off.attacks)}</span><span>Victoires</span><span>${CQ.fmt(off.kills)}</span><span>Expérience</span><span>+${CQ.fmt(off.xp)} XP${off.levels ? ` · +${off.levels} niveau${off.levels > 1 ? 'x' : ''}` : ''}</span>
-      <span>CQ</span><span class="c-cq">+${CQ.fmt(off.cq)}</span><span>Farm Points</span><span class="c-fp">+${CQ.fmt(off.fp)}</span>
-      <span>Énergie restante</span><span>${CQ.fmt(Math.floor(CQ.energyNow()))} / ${CQ.fmt(CQ.playerStats().emax)}</span></div>${tail}
-      <div class="actions"><button class="btn primary" data-act="closeModal">Reprendre l'aventure</button></div>`);
+    CQ.openModal(`<div class="away"><div class="kicker">Pendant votre absence · ${CQ.fmtDur(off.away)}</div><h2>Votre héros a combattu</h2>
+      <div class="away-hero">${HERO}<span class="away-zone">${CQ.ZONES[s.zone].icon}</span></div>
+      <div class="away-gains">
+        <div class="ag"><span>⚔️</span><b>${CQ.fmt(off.kills)}</b><small>victoires</small></div>
+        <div class="ag"><span>✨</span><b>+${CQ.fmt(off.xp)}</b><small>XP${off.levels ? ` · +${off.levels} niv.` : ''}</small></div>
+        <div class="ag"><span>${CQ.CUR.cq.ico}</span><b class="c-cq">+${CQ.fmt(off.cq)}</b><small>CQ</small></div>
+        <div class="ag"><span>${CQ.CUR.fp.ico}</span><b class="c-fp">+${CQ.fmt(off.fp)}</b><small>FP</small></div>
+      </div>
+      <div class="small muted">${CQ.fmt(off.attacks)} énergie dépensée, à ${Math.round(off.eff * 100)} % du rendement · énergie restante ${CQ.fmt(Math.floor(CQ.energyNow()))} / ${CQ.fmt(CQ.playerStats().emax)}</div>${tail}
+      <div class="actions"><button class="btn gold block" data-act="closeModal">Récupérer</button></div></div>`);
   } else if (CQ.loginAvailable()) {
     CQ.toast('🎺 Le héraut vous attend : votre bonus de connexion est prêt.', 'r4');
   }

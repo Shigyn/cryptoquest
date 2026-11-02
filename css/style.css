@@ -1394,3 +1394,15 @@ body.page-combat .arena.idle-stage .fighter .sprite { font-size: 84px; height: 1
   body.page-combat .fight-fab .ff-ico { font-size: 20px; }
   body.page-combat .fight-fab .ff-l { font-size: 9px; }
 }
+
+/* ---------- Pendant votre absence ---------- */
+.away { text-align: center; }
+.away h2 { font-size: 24px; }
+.away-hero { position: relative; display: inline-block; font-size: 84px; margin: 6px 0; filter: drop-shadow(0 0 20px rgba(255,200,110,.35)); animation: walkBob .5s ease-in-out infinite; }
+.away-zone { position: absolute; right: -24px; bottom: 0; font-size: 34px; }
+.away-gains { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0 12px; }
+.ag { padding: 10px 4px; border-radius: 14px; border: 2px solid var(--frame); background: linear-gradient(180deg, #23182a, #150f1a); }
+.ag span { display: block; font-size: 24px; }
+.ag b { display: block; font-family: var(--font-title); font-size: 17px; }
+.ag small { color: var(--muted); font-size: 11px; }
+@media (max-width: 480px) { .away-gains { grid-template-columns: repeat(2, 1fr); } }

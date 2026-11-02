@@ -144,3 +144,14 @@ A.openAllChests = (k) => {
     agg = { el: box && box.lastElementChild, n: 1, cq: Number(m[1]), t: Date.now() };
   };
 })();
+
+// le calendrier de connexion attend qu'une autre fenêtre (rapport d'absence, mise à jour…) soit fermée
+(() => {
+  const close = CQ.closeModal;
+  CQ.closeModal = (...a) => {
+    const r = close(...a);
+    if (CQ._calWait && CQ.loginAvailable()) { CQ._calWait = false; setTimeout(() => { if (!document.getElementById('modalRoot').classList.contains('on')) A.claimLogin(); }, 350); }
+    return r;
+  };
+})();
+window.addEventListener('load', () => setTimeout(() => { if (CQ.loginAvailable() && document.getElementById('modalRoot').classList.contains('on')) CQ._calWait = true; }, 1700));
