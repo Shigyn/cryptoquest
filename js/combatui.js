@@ -44,6 +44,7 @@ A.bossAuto = () => {
 };
 
 // ---------- Écran de combat ----------
+CQ.ZONE_IMG = []; // zones qui ont leur décor peint (index de CQ.ZONES)
 (() => {
   const render = P.combat.render;
   // route qui défile sous les combattants
@@ -66,6 +67,8 @@ A.bossAuto = () => {
     tick(); CQ.fabSync();
     // le héros marche entre deux combats et pendant l'arrivée de l'ennemi (pur visuel : le moteur ne change pas)
     const ar = document.getElementById('arena'), c = CQ.combat;
+    // décor peint de la zone, quand l'illustration existe (img/zones/zN.webp)
+    if (ar && ar._z !== c.zone) { ar._z = c.zone; const img = CQ.ZONE_IMG.includes(c.zone); ar.classList.toggle('has-img', img); if (img) ar.style.setProperty('--zimg', `url(img/zones/z${c.zone}.webp)`); }
     if (ar) ar.classList.toggle('walking', !!CQ.state.auto && !c.deadUntil && !CQ.isResting() && (!c.m || Date.now() - (CQ.ui.spawnT || 0) < 700));
   };
 })();

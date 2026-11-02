@@ -1356,3 +1356,5 @@ body:not(.on-town) .town-btn { display: grid !important; place-items: center; fo
 #fM.spawn .sprite { animation: walkBob .3s ease-in-out 2; }
 @keyframes enterR { from { transform: translateX(80%); opacity: 0; } 30% { opacity: 1; } }
 body.reduce .arena .road, body.reduce .arena .road::after, body.reduce #fM.spawn, body.reduce .arena.walking #fP .sprite { animation: none !important; }
+.arena.has-img { background: linear-gradient(180deg, rgba(10,6,14,.05), rgba(10,6,14,.15) 55%, rgba(10,6,14,.6)), var(--zimg) center 35% / cover no-repeat; }
+.arena.has-img .road { opacity: .85; }
