@@ -1284,3 +1284,4 @@ body:not(.on-town) .town-btn { display: grid !important; place-items: center; fo
   .toasts { bottom: calc(var(--bnav) + 10px); }
 }
 .town-stage .town-head { display: none; }
+.claim-all { margin-bottom: 14px; font-size: 15px; padding: 12px; animation: bangBob 1.8s ease-in-out infinite; }

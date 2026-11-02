@@ -42,7 +42,8 @@ CQ.townDock = () => {
   const b = CQ.badges(), col = (list) => list.filter(([id]) => CQ.unlocked(id)).map(([id, ic, l]) =>
     `<a class="dk" href="#${id}"><span class="dk-ico">${ic}${b[id] ? '<i class="dk-dot"></i>' : ''}</span><span class="dk-l">${l}</span></a>`).join('');
   const gift = CQ.loginAvailable() ? `<button class="dk gift" data-act="claimLogin" title="Bonus de connexion du jour"><span class="dk-ico">🎁<i class="dk-dot"></i></span><span class="dk-l">Bonus</span></button>` : '';
-  return `<nav class="hub-col left" aria-label="Raccourcis">${gift}${col(CQ.HUB_LEFT)}</nav><nav class="hub-col right" aria-label="Raccourcis">${col(CQ.HUB_RIGHT)}</nav>`;
+  const all = CQ.claimAllReady && CQ.claimAllReady() ? `<button class="dk gift" data-act="claimAll" title="Tout récupérer"><span class="dk-ico">🎉<i class="dk-dot"></i></span><span class="dk-l">Récupérer</span></button>` : '';
+  return `<nav class="hub-col left" aria-label="Raccourcis">${gift}${all}${col(CQ.HUB_LEFT)}</nav><nav class="hub-col right" aria-label="Raccourcis">${col(CQ.HUB_RIGHT)}</nav>`;
 };
 (() => {
   const render = P.town.render;
