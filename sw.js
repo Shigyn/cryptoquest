@@ -2,7 +2,7 @@
 // Service worker : le jeu s'ouvre même sans réseau.
 // Réseau d'abord (une mise à jour s'affiche tout de suite), cache en secours quand on est hors ligne.
 // Changer VERSION à chaque livraison pour forcer le renouvellement complet.
-const VERSION = 'cq-ui-19';
+const VERSION = 'cq-ui-20';
 const SHELL = [
   './', './index.html', './manifest.webmanifest', './css/style.css',
   './js/data.js', './js/state.js', './js/engine.js', './js/economy.js', './js/ui.js', './js/pages.js', './js/hero.js', './js/forge.js', './js/content.js',

@@ -1406,3 +1406,23 @@ body.page-combat .arena.idle-stage .fighter .sprite { font-size: 84px; height: 1
 .ag b { display: block; font-family: var(--font-title); font-size: 17px; }
 .ag small { color: var(--muted); font-size: 11px; }
 @media (max-width: 480px) { .away-gains { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- Barre vers le boss et impacts ---------- */
+.boss-prog { position: absolute; z-index: 4; top: 10px; left: 12px; display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border-radius: 999px; background: rgba(10,6,14,.78); border: 2px solid var(--frame); font-size: 12px; }
+.boss-prog[hidden] { display: none; }
+.bp-boss { width: 30px; height: 30px; display: grid; place-items: center; font-size: 17px; border-radius: 50%; background: #2a1020; border: 2px solid #5c2a30; filter: grayscale(.6); }
+.bp-boss.on { filter: none; border-color: #ffd36b; box-shadow: 0 0 12px rgba(255,90,98,.7); animation: bangBob 1.2s ease-in-out infinite; }
+.bp-bar { width: 90px; height: 8px; border-radius: 9px; background: #1a0a0e; border: 1px solid var(--frame); overflow: hidden; }
+.bp-bar i { display: block; height: 100%; background: linear-gradient(90deg, #a3202a, #ffd36b); transition: width .3s; }
+.boss-prog b { font-family: var(--font-title); color: #ffe7a8; }
+.arena-mode { left: auto !important; right: 12px; transform: none !important; top: 12px !important; }
+.fighter .spark { position: absolute; left: 50%; top: 32%; width: 70px; height: 70px; margin: -35px 0 0 -35px; border-radius: 50%; pointer-events: none; z-index: 3;
+  background: radial-gradient(circle, #fff 0 12%, rgba(255,220,120,.9) 22%, rgba(255,140,40,.5) 45%, transparent 70%); animation: spark .35s ease-out forwards; }
+.fighter .spark.crit { width: 120px; height: 120px; margin: -60px 0 0 -60px; background: radial-gradient(circle, #fff 0 10%, rgba(255,240,150,.95) 22%, rgba(255,80,60,.6) 48%, transparent 72%); }
+.fighter .spark.hurt { background: radial-gradient(circle, #fff 0 10%, rgba(255,120,120,.85) 24%, rgba(160,20,30,.5) 48%, transparent 70%); }
+@keyframes spark { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.3); opacity: 0; } }
+.arena.flash::after { animation: critFlash .25s ease-out; }
+@keyframes critFlash { from { background: rgba(255,230,150,.35); } }
+.arena.shake { animation: arenaShake .3s ease-in-out; }
+@keyframes arenaShake { 25% { transform: translate(-5px, 2px); } 50% { transform: translate(5px, -2px); } 75% { transform: translate(-3px, 1px); } }
+@media (max-width: 720px) { .bp-bar { width: 56px; } .boss-prog { top: 8px; left: 8px; } }
