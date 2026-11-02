@@ -5,7 +5,7 @@
 
 CQ.TOWN_IMG = {
   decor: 'img/town/decor-ville.webp', // un seul décor pour l'instant, utilisé à toutes les étapes
-  blds: ['maison', 'forge', 'taverne'],
+  blds: ['maison', 'forge', 'taverne', 'autel', 'heraut', 'tresor', 'fontaine'],
 };
 CQ.PANO = { w: 2000, h: 667, panels: 4, slots: [180, 530, 885, 1230, 1575, 1880], base: 470, size: 380 };
 
