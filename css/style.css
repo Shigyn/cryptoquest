@@ -1358,3 +1358,39 @@ body:not(.on-town) .town-btn { display: grid !important; place-items: center; fo
 body.reduce .arena .road, body.reduce .arena .road::after, body.reduce #fM.spawn, body.reduce .arena.walking #fP .sprite { animation: none !important; }
 .arena.has-img { background: linear-gradient(180deg, rgba(10,6,14,.05), rgba(10,6,14,.15) 55%, rgba(10,6,14,.6)), var(--zimg) center 35% / cover no-repeat; }
 .arena.has-img .road { opacity: .85; }
+
+/* ---------- Écran principal idle ---------- */
+body.page-combat .arena.idle-stage { position: sticky; top: var(--hub-top, 64px); z-index: 6; min-height: 0; height: 44vh; padding-top: 44px; }
+body.page-combat .arena.idle-stage .fighter .sprite { font-size: 84px; height: 104px; }
+.idle-panel { margin-top: 14px; border: 2px solid var(--frame-2); border-radius: 18px; background: linear-gradient(180deg, #1f1426, #120c16); box-shadow: inset 0 0 0 1px rgba(255,220,150,.07), 0 10px 30px rgba(0,0,0,.45); overflow: hidden; }
+.idle-tabs { display: flex; gap: 4px; padding: 6px; background: linear-gradient(180deg, #2a1a30, #1a1020); border-bottom: 2px solid var(--frame); }
+.idle-tabs .it { position: relative; flex: 1; padding: 10px 6px; border-radius: 12px; border: 0; background: none; color: #b9a99c; font-family: var(--font-title); font-weight: 700; font-size: 13px; }
+.idle-tabs .it.on { background: linear-gradient(180deg, #c0303b, #8a1820); color: #ffe7a8; box-shadow: inset 0 0 0 1px #ffb36b, 0 3px 0 #4a0a10; text-shadow: 0 1px 2px #000; }
+.idle-tabs .bn-dot { top: 4px; right: 8px; }
+.idle-body { padding: 12px 14px 14px; }
+.idle-list { display: flex; flex-direction: column; gap: 8px; }
+.idle-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 14px; background: linear-gradient(180deg, #23182a, #160f1b); border: 1px solid var(--line-2); }
+.ir-ico { width: 44px; height: 44px; flex: none; display: grid; place-items: center; font-size: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #4a2558, #1a0d20); border: 2px solid var(--frame-2); }
+.ir-txt { flex: 1; min-width: 0; }
+.ir-txt b { display: block; font-size: 13.5px; }
+.ir-lvl { font-family: var(--font-title); color: var(--gold-2); font-size: 12px; margin-left: 4px; }
+.ir-txt small { display: block; font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ir-bar .bar { height: 6px; margin-top: 4px; }
+.ir-btn { flex-direction: column; gap: 0; line-height: 1.1; min-width: 64px; }
+.ir-btn small { font-size: 10px; font-weight: 600; opacity: .85; }
+.idle-gear { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.idle-gear .item { width: 100%; aspect-ratio: 1; height: auto; }
+.idle-gear .empty-slot { opacity: .45; border-style: dashed; }
+.idle-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+@media (max-width: 720px) {
+  body.page-combat .arena.idle-stage { min-height: 0; height: 40vh; padding-top: 40px; }
+  body.page-combat .arena.idle-stage .fighter .sprite { font-size: 60px; height: 76px; }
+  body.page-combat .arena.idle-stage .fighter .bars { gap: 3px; }
+  body.page-combat .arena.idle-stage .hpt { font-size: 10.5px; }
+  .idle-tabs .it { font-size: 11.5px; padding: 9px 2px; }
+  .idle-gear { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .idle-actions .btn { flex: 1 1 45%; }
+  body.page-combat .fight-fab { top: calc(var(--hub-top, 58px) + 40vh - 68px); bottom: auto; right: 22px; width: 58px; height: 58px; border-width: 3px; }
+  body.page-combat .fight-fab .ff-ico { font-size: 20px; }
+  body.page-combat .fight-fab .ff-l { font-size: 9px; }
+}
