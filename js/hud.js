@@ -41,8 +41,8 @@ window.addEventListener('hashchange', () => { const el = document.getElementById
 
 // ---------- Parchemin des objectifs ----------
 // Les 3 prochaines choses à faire (mêmes règles que la liste « À faire »), repliable, mémorisé par appareil.
-// sans choix mémorisé : ouvert sur grand écran, replié sur téléphone (il cacherait le jeu)
-CQ.objOpen = () => { let v = null; try { v = localStorage.getItem('cq_obj'); } catch (e) { /* rien */ } return v === null ? innerWidth > 720 : v !== '0'; };
+// sans choix mémorisé : replié (ouvert, il cacherait des boutons)
+CQ.objOpen = () => { let v = null; try { v = localStorage.getItem('cq_obj'); } catch (e) { /* rien */ } return v === null ? false : v !== '0'; };
 CQ.renderObjectives = () => {
   let el = document.getElementById('objectives');
   const hide = CQ.ui.page === 'town' || CQ.ui.page === 'dashboard' || (CQ.tutoActive && CQ.tutoActive()) || document.getElementById('modalRoot').classList.contains('on');

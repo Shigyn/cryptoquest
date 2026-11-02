@@ -1071,3 +1071,80 @@ body.page-town .view > .grid { padding: 18px 28px 0; }
   /* réglage « Animations : complètes » = body.full-motion */
   body:not(.full-motion) *, body:not(.full-motion) *::before, body:not(.full-motion) *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* =========================================================
+   Habillage « RPG mobile » : fenêtres à cadre doré, boutons épais, onglets en rubans,
+   barre du bas en médaillons. Ne change que l'apparence (placé en fin de fichier pour primer).
+   ========================================================= */
+:root {
+  --panel: #1a1320;
+  --panel-2: #241a2b;
+  --bg-2: #130e17;
+  --line: #3a2c3a;
+  --line-2: #4d3a46;
+  --frame: #6b5326;
+  --frame-2: #a8843d;
+}
+body {
+  background:
+    radial-gradient(1200px 700px at 75% -10%, rgba(120, 40, 140, .22), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, rgba(163, 32, 42, .16), transparent 60%),
+    #0b0710;
+  background-attachment: fixed;
+}
+
+/* barre du haut */
+.topbar { background: linear-gradient(180deg, rgba(30,18,36,.96), rgba(16,10,20,.94)); border-bottom: 2px solid var(--frame); box-shadow: 0 6px 20px rgba(0,0,0,.5); }
+.page-title { font-family: var(--font-title); color: var(--gold-2); text-shadow: 0 2px 6px #000; }
+.icon-btn { background: radial-gradient(circle at 35% 30%, #3a2244, #1a0f20); border: 2px solid var(--frame-2); border-radius: 12px; box-shadow: 0 3px 0 #3d2a10; }
+.purse, .flask, .book-btn { border: 2px solid var(--frame); background: linear-gradient(180deg, #23182a, #150f1a); box-shadow: inset 0 1px 0 rgba(255,220,150,.08), 0 2px 0 #2a1d0c; }
+
+/* fenêtres */
+.card {
+  background: linear-gradient(180deg, rgba(255,220,150,.035), transparent 30%), linear-gradient(180deg, #1c1422, #130e17);
+  border: 2px solid var(--frame); border-radius: 16px;
+  box-shadow: inset 0 0 0 1px rgba(255,220,150,.07), inset 0 0 30px rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.45);
+}
+.card::before { content: ""; position: absolute; left: 18px; right: 18px; top: -2px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold-2), transparent); opacity: .7; pointer-events: none; }
+.card.gold { border-color: var(--frame-2); }
+.card.glow { border-color: #7a2a33; }
+.card h3 { color: var(--gold-2); font-size: 16px; padding-bottom: 10px; border-bottom: 1px solid transparent; border-image: linear-gradient(90deg, rgba(232,200,126,.45), transparent) 1; text-shadow: 0 2px 4px #000; }
+.list-row { background: linear-gradient(180deg, #1f1626, #160f1b); border: 1px solid var(--line-2); border-radius: 12px; }
+.empty { border-color: var(--frame); border-radius: 14px; }
+.modal { border: 2px solid var(--frame-2); border-radius: 18px; background: linear-gradient(180deg, #22172a, #140e19); box-shadow: inset 0 0 0 1px rgba(255,220,150,.08), 0 30px 80px rgba(0,0,0,.7); }
+.modal h2 { color: var(--gold-2); text-shadow: 0 2px 6px #000; }
+.modal .x { border-radius: 50%; border: 2px solid var(--frame-2); background: radial-gradient(circle at 35% 30%, #5a2230, #2a0d14); color: #ffe7a8; }
+
+/* boutons épais */
+.btn { border-radius: 12px; border: 2px solid #4d3a46; background: linear-gradient(180deg, #33243b, #1f1626); box-shadow: 0 4px 0 #120c16, 0 6px 14px rgba(0,0,0,.35); text-shadow: 0 1px 2px rgba(0,0,0,.6); font-weight: 700; }
+.btn:hover { background: linear-gradient(180deg, #3d2b46, #251a2d); border-color: #6b5160; }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #120c16, 0 2px 6px rgba(0,0,0,.35); }
+.btn.primary { background: linear-gradient(180deg, #e0404a, #a51d27 55%, #7e121b); border-color: #ffb36b; color: #fff; box-shadow: 0 4px 0 #4a0a10, 0 8px 20px -6px rgba(224,64,74,.6), inset 0 1px 0 rgba(255,255,255,.25); }
+.btn.primary:hover { background: linear-gradient(180deg, #ee4a54, #b5222c 55%, #8a151e); }
+.btn.gold { background: linear-gradient(180deg, #ffe08a, #e0ac3e 55%, #b07a22); border-color: #fff0b8; color: #2a1606; text-shadow: 0 1px 0 rgba(255,255,255,.4); box-shadow: 0 4px 0 #6b4410, 0 8px 20px -6px rgba(255,200,90,.55), inset 0 1px 0 rgba(255,255,255,.5); }
+.btn.gold:hover { background: linear-gradient(180deg, #fff09e, #ecb84a 55%, #bc8428); }
+.btn.ghost { background: rgba(20,14,25,.6); box-shadow: 0 3px 0 #0d0910; }
+.btn.sm { border-radius: 10px; }
+
+/* onglets en rubans */
+.tabs { background: linear-gradient(180deg, #1a1220, #120c16); border: 2px solid var(--frame); border-radius: 14px; padding: 5px; gap: 5px; }
+.tab { border-radius: 10px; color: #b9a99c; }
+.tab.on { background: linear-gradient(180deg, #c0303b, #8a1820); color: #ffe7a8; box-shadow: inset 0 0 0 1px #ffb36b, 0 3px 0 #4a0a10; text-shadow: 0 1px 2px #000; }
+
+/* champs et pastilles */
+.input { border: 2px solid var(--line-2); border-radius: 10px; background: #120c16; }
+.chip { border: 1px solid var(--frame); background: linear-gradient(180deg, #23182a, #150f1a); color: #d8c8b4; }
+.chip.gold { background: linear-gradient(180deg, #ffe08a, #c99634); color: #2a1606; border-color: #fff0b8; }
+
+.int-img { width: 96px; height: 96px; margin: -14px 0 -10px -4px; flex: none; object-fit: contain; filter: drop-shadow(0 6px 10px rgba(0,0,0,.6)); }
+
+/* barre du bas : médaillons */
+@media (max-width: 720px) {
+  .bottomnav { background: linear-gradient(180deg, rgba(34,20,40,.97), rgba(14,9,18,.98)); border-top: 2px solid var(--frame); box-shadow: 0 -6px 20px rgba(0,0,0,.5); }
+  .bottomnav a, .bottomnav button { padding: 6px 0 7px; font-family: var(--font-title); font-size: 10px; color: #c9b8a6; text-shadow: 0 1px 2px #000; }
+  .bottomnav .ni { width: 38px; height: 38px; display: grid; place-items: center; font-size: 19px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #4a2558, #22102a 60%, #140a19); border: 2px solid var(--frame-2); box-shadow: 0 3px 0 #3d2a10; }
+  .bottomnav .active { color: #ffe7a8; }
+  .bottomnav .active .ni { border-color: #ffe08a; box-shadow: 0 3px 0 #3d2a10, 0 0 14px rgba(255,210,110,.6); transform: translateY(-3px); }
+  .card { border-radius: 14px; }
+  .int-img { display: none; }
+}

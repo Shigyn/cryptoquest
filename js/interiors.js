@@ -99,7 +99,8 @@ CQ.interiorHtml = (page) => {
   const first = !CQ.npcSeen()[b.id];
   const back = CQ.navMode() === 'ville' ? `<a class="btn sm ghost int-back" href="#town">← La Cité</a>` : '';
   return `<div class="interior ${first ? 'first' : ''}" data-bld="${b.id}">
-    <svg class="int-art town-svg night" viewBox="-62 -${CQ.ART_H[b.art] + 14} 124 ${CQ.ART_H[b.art] + 24}" aria-hidden="true">${CQ.ART[b.art]()}</svg>
+    ${CQ.TOWN_IMG && CQ.TOWN_IMG.blds.includes(b.id) ? `<img class="int-img" src="img/town/${b.id}.webp" alt="" aria-hidden="true">`
+      : `<svg class="int-art town-svg night" viewBox="-62 -${CQ.ART_H[b.art] + 14} 124 ${CQ.ART_H[b.art] + 24}" aria-hidden="true">${CQ.ART[b.art]()}</svg>`}
     <div class="int-npc"><span class="int-face" aria-hidden="true">${n.face}</span>
       <div class="int-talk"><div class="int-who"><b>${n.name}</b><span>${n.role} · ${b.name}</span></div>
         ${first ? `<ol class="int-intro">${n.intro.map((l) => `<li>${l}</li>`).join('')}</ol><button class="btn sm gold" data-act="npcSeen" data-arg="${b.id}">Compris</button>`
