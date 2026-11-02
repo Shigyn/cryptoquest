@@ -512,7 +512,7 @@ P.forge = {
           <span>Chance de réussite</span><span>${CQ.UPGRADE_CHANCE[sel.plus]} %</span>
           <span>Gain par palier</span><span>+10 % des stats de base</span>
           <span>Coût</span><span>${CQ.money('cq', cost)}${um ? ` + ${um.n} ${CQ.matLabel(um.mat, um.q)} <span class="dim">(${CQ.matCount(um.mat, um.q)} en réserve)</span>` : ''}</span></div>
-          <div class="note mt">En cas d'échec, les CQ et la Cendre sont perdus mais l'objet reste intact. Au-delà de +10, il faut de la Cendre de qualité (onglet Fonte).</div>
+          ${CQ.upRiskHtml ? CQ.upRiskHtml(sel) : ''}
           <button class="btn primary block mt" data-act="doUpgrade" ${s.cq >= cost && (!um || CQ.matCount(um.mat, um.q) >= um.n) ? '' : 'disabled'}>Forger +${sel.plus + 1}</button>`}`;
     }
     return `<div class="grid g2"><div class="card"><h3>Vos objets</h3>${items.length ? `<div class="items">${items.map((it) => CQ.itemTile(it, { act: 'selUp', sel: sel && sel.id === it.id })).join('')}</div>` : '<div class="empty">Inventaire vide.</div>'}</div>
