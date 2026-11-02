@@ -1185,3 +1185,27 @@ body {
   .boss-auto { margin-left: 0; }
 }
 @media (max-width: 720px) { body:has(.fight-fab) .objectives { right: 96px; } }
+
+/* ---------- Maison du héros : vitrine et répartition auto ---------- */
+.hero-show { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; margin-bottom: 14px; padding: 16px; border-radius: 18px; border: 2px solid var(--frame-2);
+  background: radial-gradient(ellipse at 50% 85%, rgba(255,190,110,.22), transparent 55%), radial-gradient(ellipse at 50% 20%, rgba(120,40,140,.35), transparent 70%), linear-gradient(180deg, #1e1226, #0f0a13);
+  box-shadow: inset 0 0 0 1px rgba(255,220,150,.08), 0 12px 34px rgba(0,0,0,.5); }
+.hs-col { display: flex; flex-direction: column; gap: 8px; }
+.hs-slot .item { width: 62px; height: 62px; font-size: 24px; }
+.hs-slot .empty-slot { opacity: .45; border-style: dashed; }
+.hs-mid { text-align: center; }
+.hs-sprite { font-size: 120px; line-height: 1.1; filter: drop-shadow(0 14px 10px rgba(0,0,0,.75)) drop-shadow(0 0 22px rgba(255,200,120,.25)); }
+.hs-name { display: inline-block; margin-top: 6px; padding: 4px 16px; border-radius: 6px; background: linear-gradient(180deg, #a3202a, #6e1219); border: 2px solid var(--gold-2); color: #ffe7a8; font-family: var(--font-title); font-weight: 700; text-shadow: 0 1px 2px #000; box-shadow: 0 3px 0 #3a0a0e; }
+.hs-lvl { margin-top: 6px; color: var(--muted); font-size: 12.5px; }
+.hs-power { margin: 8px auto 0; display: inline-flex; align-items: baseline; gap: 8px; padding: 6px 16px; border-radius: 999px; background: rgba(10,6,12,.7); border: 1px solid var(--frame); }
+.hs-power span { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.hs-power b { font-family: var(--font-title); font-size: 26px; color: var(--gold-2); text-shadow: 0 0 14px rgba(255,200,110,.5); }
+.auto-pts { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; padding: 14px 16px; border-radius: 14px; border: 2px solid #ffd36b; background: linear-gradient(90deg, rgba(255,200,90,.14), rgba(30,18,36,.9) 60%); box-shadow: 0 0 22px rgba(255,200,90,.2); }
+.auto-pts > div { flex: 1; min-width: 0; }
+@media (max-width: 720px) {
+  .hero-show { gap: 8px; padding: 12px 8px; }
+  .hs-slot .item { width: 50px; height: 50px; font-size: 20px; }
+  .hs-sprite { font-size: 84px; }
+  .hs-power b { font-size: 21px; }
+  .auto-pts { flex-direction: column; align-items: stretch; }
+}
